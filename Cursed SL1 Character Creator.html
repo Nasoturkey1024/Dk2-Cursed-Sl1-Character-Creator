@@ -1,0 +1,1057 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Cursed SL1 Character Creator</title>
+    <meta name="author" content="Nasoturkey" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+
+    <style>
+        div {
+            display: inline-block;
+        }
+        h1 {
+            text-align:center;
+        }
+        #left {
+            width: 50%;
+            float: left;
+            text-align: center;
+        }
+        .lefter {
+            width: 50%;
+            text-align: right;
+            float: left;
+        }
+        .else {
+            text-align: left;
+            float: left;
+            margin-left: 3px;
+        }
+        .right {
+            width: 50%;
+            float: right;
+            text-align: center;
+        }
+        #final {
+            display: none;
+            width: 100%;
+            text-align: center;
+        }
+        .height {
+            height:20px;
+        }
+        .lside {
+            width: 20%;
+            float: left;
+            text-align: right;
+        }
+        .middle {
+            width: 20%;
+            float: left;
+        }
+        .leftnt{
+            width: 60%;
+            float: left;
+        }
+        select {
+            width: 90%;
+            height: 20px;
+            text-align: center;
+        }
+        .button {
+            width: 100%;
+            text-align: center;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Create Your Character</h1>
+    <div id="left"> <!--Stat Page. Vig, End, Vit, Att,Str, Dex,Adp,Int,Fai-->
+        <h2>Soul Level <span id="level1">-44</span></h2>
+        <div class="lefter">
+            <p class="height">Vigor:</p>
+            <p class="height">Endurance:</p>
+            <p class="height">Vitality:</p>
+            <p class="height">Attuenment:</p>
+            <p class="height">Strength:</p>
+            <p class="height">Dexterity:</p>
+            <p class="height">Adaptability:</p>
+            <p class="height">Intelligence:</p>
+            <p class="height">Faith:</p>
+        </div>
+        <div class="else">
+        <p class="height"><button onclick="decreament('vig1')">-</button><span id="vig1">1</span><button onclick="increament('vig1')">+</button></p>
+        <p class="height"><button onclick="decreament('end1')">-</button><span id="end1">1</span><button onclick="increament('end1')">+</button></p>
+        <p class="height"><button onclick="decreament('vit1')">-</button><span id="vit1">1</span><button onclick="increament('vit1')">+</button></p>
+        <p class="height"><button onclick="decreament('att1')">-</button><span id="att1">1</span><button onclick="increament('att1')">+</button></p>
+        <p class="height"><button onclick="decreament('str1')">-</button><span id="str1">1</span><button onclick="increament('str1')">+</button></p>
+        <p class="height"><button onclick="decreament('dex1')">-</button><span id="dex1">1</span><button onclick="increament('dex1')">+</button></p>
+        <p class="height"><button onclick="decreament('adp1')">-</button><span id="adp1">1</span><button onclick="increament('adp1')">+</button></p>
+        <p class="height"><button onclick="decreament('int1')">-</button><span id="int1">1</span><button onclick="increament('int1')">+</button></p>
+        <p class="height"><button onclick="decreament('fth1')">-</button><span id="fth1">1</span><button onclick="increament('fth1')">+</button></p>
+        <p class="height"><button onclick="reset()">Reset</button></p>
+        </div>
+
+    </div>
+
+    <div class="right"> <!--Equipment-->
+        <h2>Select Equipment</h2>
+        <div class="lside">
+            <h3>Slot</h3>
+            <p class="height">Head:</p>
+            <p class="height">Chest:</p>
+            <p class="height">Arms:</p>
+            <p class="height">Legs:</p>
+            <p class="height">Off-Hand</p>
+            <p class="height">Ring #1:</p>
+            <p class="height">Ring #2:</p>
+            <p class="height">Ring #3:</p>
+            <p class="height">Ring #4:</p>
+            <p class="height">Balm:</p>
+        </div>
+        <div class="middle">
+            <h3>Name</h3>
+            <p><select onchange="calculatehead()" id="selecthead">
+                <option value="nohead?">None</option>
+                <option value="cale">Cale's Helm(+2 Dex,+1 End)</option>
+                <option value="mad">Mad Warrior Mask(+2 Adp)</option>
+                <option value="sunken">Crown of the Sunken King(+1 End/Str/Dex/Int/Fth, -1 Vig/Vit)</option>
+                <option value="vel">Velstadt's Helm(+1 End/Vit)</option>
+                <option value="ven">Vengarl's Helm(+2 Vit)</option>
+                
+                <option value="king">King's Crown(+3 Int/Fth)</option>
+                <option value="hood2">Black Hood(+2 Int/Fth)</option>
+                <option value=hood1>Leydia Black Hood(+1 Int/Fth)</option>
+                <option value="hood1">Dark Mask(+1 Int/Fth)</option>
+                <option value="hood1">Dragon Sage Hood(+1 Int/Fth)</option>
+                <option value="hood1">Hexer's Hood(+1 Int/Fth)</option>
+
+                <option value="hat3">Chaos Hood(+3 Int)</option>
+                <option value="hat3">Desert Sorceress Hood(+3 Int)</option>
+                <option value="hat2">Warlock Mask(+2 Int)</option>
+                <option value="hat2">Moon Hat(+2 Int)</option>
+                <option value="hat1">Moon Butterfly Hat(+1 Int)</option>
+                <option value="hat1">Archdrake Helm(+1 Int)</option>
+                <option value="hat1">Black Hollow Mage Hood(+1 Int)</option>
+                <option value="hat1">White Hollow Mage Hood(+1 Int)</option>
+                
+                <option value="phat">Pesant Hat(+2 Fth, -1 Int)</option>
+                <option value="headpiece2">Insolent Helm(+2 Fth)</option>
+                <option value="headpiece1">Saint's Hood(+1 Fth)</option>
+                <option value="headpiece1">Priestess Headpiece(+1 Fth)</option>
+                <option value="headpiece1">White Priest Headpiece(+1 Fth)</option>
+                <option value="headpiece1">Looking Glass Mask(+1 Fth)</option>
+            </select></p>
+            <p><select onchange="calculatechest()" id="selectchest">
+                <option value="barechest">None</option>
+                <option value="pchest">Peasant Attire(+2 Adp, -1 Int)</option>
+            </select></p>
+            <p><select onchange="calculatearm()" id="selectarm">
+                <option value="barefist">None</option>
+                <option value="parm">Peasant Long Gloves(+2 Adp, -1 Int)</option>
+                <option value="cuff">Agdayne's Cuffs(+1 Fth)</option>
+            </select></p>
+            <p><select onclick="calculateleg()" id="selectleg">
+                <option value="unshavenlegs">None</option>
+                <option value="pleg">Peasant Trousers(+2 Adp,-1 Int)</option>
+                <option value="pain">Flower Skirt(+2 Vig,+1 End)</option>
+            </select></p>
+            <p><select onchange="calculatehand()" id="selecthand">
+                <option value="hegothands">None</option>
+                <option value="shield">Vessel Shield(+4 Str/Dex,+ 1Int/Fth/Vig/End/Adp)</option>
+                <option  value="laddle">Laddle(+2 Adp,+1 End/Vit,-1 Dex)</option>
+                <option  value="hook">Work Hook(+5 Dex,-3 Adp)</option>
+                <option  value="deargod">Chime of Screams(+X Fth, Calculation not supported)</option> // faith boost needs testing
+            </select></p>
+            <p><select onchange="calculatering1()" id="selectring1">
+                <option id="maidenless1" value="maidenless">None</option>
+                <option id="strength1" value="strength">Strength Ring(+5 Str)</option>
+                <option id="dexterity1" value="dexterity">Dexterity Ring(+5 Dex)</option>
+                <option id="simple1" value="simple">Simpleton's Ring(+5 Adp)</option>
+                <option id="knowledge1" value="knowledge">Ring of Knowledge(+5 Int)</option>
+                <option id="prayer1" value="prayer">Ring of Prayer(+5 Fth)</option>
+            </select></p>
+            <p><select onchange="calculatering2()" id="selectring2">
+                <option id="maidenless2" value="maidenless">None</option>
+                <option id="strength2" value="strength">Strength Ring(+5 Str)</option>
+                <option id="dexterity2" value="dexterity">Dexterity Ring(+5 Dex)</option>
+                <option id="simple2" value="simple">Simpleton's Ring(+5 Adp)</option>
+                <option id="knowledge2" value="knowledge">Ring of Knowledge(+5 Int)</option>
+                <option id="prayer2" value="prayer">Ring of Prayer(+5 Fth)</option>
+            </select></p>
+            <p><select onchange="calculatering3()" id="selectring3">
+                <option id="maidenless3" value="maidenless">None</option>
+                <option id="strength3" value="strength">Strength Ring(+5 Str)</option>
+                <option id="dexterity3" value="dexterity">Dexterity Ring(+5 Dex)</option>
+                <option id="simple3" value="simple">Simpleton's Ring(+5 Adp)</option>
+                <option id="knowledge3" value="knowledge">Ring of Knowledge(+5 Int)</option>
+                <option id="prayer3" value="prayer">Ring of Prayer(+5 Fth)</option>
+            </select></p>
+            <p><select onchange="calculatering4()" id="selectring4">
+                <option id="maidenless4" value="maidenless">None</option>
+                <option id="strength4" value="strength">Strength Ring(+5 Str)</option>
+                <option id="dexterity4" value="dexterity">Dexterity Ring(+5 Dex)</option>
+                <option id="simple4" value="simple">Simpleton's Ring(+5 Adp)</option>
+                <option id="knowledge4" value="knowledge">Ring of Knowledge(+5 Int)</option>
+                <option id="prayer4" value="prayer">Ring of Prayer(+5 Fth)</option>
+            </select></p>
+            <p><select onchange="calculatebalm()" id="selectbalm">
+                <option value="drugfree">None</option>
+                <option value="steroids">Old Growth Balm(+5 Str)</option>
+                <option value="coffee">Vine Balm(+5 Dex)</option>
+                <option value="adderall">Blackweed Balm(+5 Int)</option>
+                <option value="shrooms">Goldenfruit Balm(+5 Fth)</option>
+            </select></p>
+        </div>
+        <div class="leftnt">
+            <h3>Stat Bonus</h3>
+            <p class="height" id="helm"></p>
+            <p class="height" id="chest"></p>
+            <p class="height" id="arm"></p>
+            <p class="height" id="leg"></p>
+            <p class="height" id="hand"></p>
+            <p class="height" id="ring1"></p>
+            <p class="height" id="ring2"></p>
+            <p class="height" id="ring3"></p>
+            <p class="height" id="ring4"></p>
+            <p class="height" id="balm"></p>
+
+        </div>
+    </div>
+
+    <div id="final"> <!--Final Result, starts hidden-->
+        <h2>Final Character Stats</h2>
+        <div class="lefter">
+            <p class="height">Vigor:</p>
+            <p class="height">Endurance:</p>
+            <p class="height">Vitality:</p>
+            <p class="height">Attuenment:</p>
+            <p class="height">Strength:</p>
+            <p class="height">Dexterity:</p>
+            <p class="height">Adaptability:</p>
+            <p class="height">Intelligence:</p>
+            <p class="height">Faith:</p>
+        </div>
+        <div class="else">
+            <p id="finale_vig" class="height"></p>
+            <p id="finale_end" class="height"></p>
+            <p id="finale_vit" class="height"></p>
+            <p id="finale_att" class="height"></p>
+            <p id="finale_str" class="height"></p>
+            <p id="finale_dex" class="height"></p>
+            <p id="finale_adp" class="height"></p>
+            <p id="finale_int" class="height"></p>
+            <p id="finale_fth" class="height"></p>
+        </div>
+    </div>
+    <div class="button">
+        <button onclick="finalcalculate()">Calculate Final Stats</button>
+    </div>
+
+    <script>
+        let vig = 1;
+        let end = 1;
+        let vit = 1;
+        let att = 1;
+        let str = 1;
+        let dex = 1;
+        let adp = 1;
+        let int = 1;
+        let fth = 1;
+        let level = -44;
+        
+        function checkstat(stat){ // Tested, works
+            switch(stat){
+                case "vig1":
+                    return vig;
+                case "end1":
+                    return end;
+                case "vit1": 
+                    return vit;
+                case "att1": 
+                    return att;
+                case "str1": 
+                    return str;
+                case "dex1": 
+                    return dex;
+                case "adp1": 
+                    return adp;
+                case "int1": 
+                    return int;
+                case "fth1": 
+                    return fth;
+            }
+        }
+        function sum(){ // tested, works
+            return vig+end+vit+att+str+dex+adp+int+fth;
+        }
+        function increament(stat){ //Tested, works
+            if(sum() < 54){
+                switch(stat){
+                    case "vig1":
+                        vig++;
+                        level++;
+                        document.getElementById("vig1").innerHTML =  vig;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "end1":
+                        end++;
+                        document.getElementById("end1").innerHTML = end;
+                        level++;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "vit1":
+                        vit++;
+                        document.getElementById("vit1").innerHTML = vit;
+                        level++;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "att1":
+                        att++;
+                        document.getElementById("att1").innerHTML = att;
+                        level++;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "str1":
+                        str++;
+                        document.getElementById("str1").innerHTML = str;
+                        level++;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "dex1":
+                        dex++;
+                        document.getElementById("dex1").innerHTML = dex;
+                        level++;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "adp1":
+                        adp++;
+                        document.getElementById("adp1").innerHTML = adp;
+                        level++;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "int1":
+                        int++;
+                        document.getElementById("int1").innerHTML = int;
+                        level++;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "fth1":
+                        fth++;
+                        document.getElementById("fth1").innerHTML = fth;
+                        level++;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                }
+            }
+        }
+        function decreament(stat){ // Tested, finally works
+            if(checkstat(stat) > 1){
+                switch(stat){
+                    case "vig1":
+                        vig--;
+                        level--;
+                        document.getElementById("vig1").innerHTML =  vig;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "end1":
+                        end--;
+                        document.getElementById("end1").innerHTML = end;
+                        level--;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "vit1":
+                        vit--;
+                        document.getElementById("vit1").innerHTML = vit;
+                        level--;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "att1":
+                        att--;
+                        document.getElementById("att1").innerHTML = att;
+                        level--;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "str1":
+                        str--;
+                        document.getElementById("str1").innerHTML = str;
+                        level--;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "dex1":
+                        dex--;
+                        document.getElementById("dex1").innerHTML = dex;
+                        level--;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "adp1":
+                        adp--;
+                        document.getElementById("adp1").innerHTML = adp;
+                        level--;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "int1":
+                        int--;
+                        document.getElementById("int1").innerHTML = int;
+                        level--;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "fth1":
+                        fth--;
+                        document.getElementById("fth1").innerHTML = fth;
+                        level--;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    
+                }
+            }
+        }
+        function reset(){ // Tested, works
+            vig = 1;
+            end = 1;
+            vit = 1;
+            att = 1;
+            str = 1;
+            dex = 1;
+            adp = 1;
+            int = 1;
+            fth = 1;
+            level = -44;
+            document.getElementById("vig1").innerHTML = vig;
+            document.getElementById("end1").innerHTML = end;
+            document.getElementById("vit1").innerHTML = vit;
+            document.getElementById("att1").innerHTML = att;
+            document.getElementById("str1").innerHTML = str;
+            document.getElementById("dex1").innerHTML = dex;
+            document.getElementById("adp1").innerHTML = adp;
+            document.getElementById("int1").innerHTML = int;
+            document.getElementById("fth1").innerHTML = fth;
+            document.getElementById("level1").innerHTML = level;
+        }
+        // Headpiece affect all stats except attunement
+        let helm_vig = 0;
+        let helm_end = 0;
+        let helm_vit = 0;
+        let helm_str = 0;
+        let helm_dex = 0;
+        let helm_adp = 0;
+        let helm_int = 0;
+        let helm_fth = 0;
+
+        let chest_adp = 0;
+        let chest_int = 0; // only peasant attire changes stats
+
+        let arm_adp = 0;
+        let arm_int = 0;
+        let arm_fth = 0;
+
+        let leg_vig = 0;
+        let leg_end = 0;
+        let leg_adp = 0;
+        let leg_int = 0;
+
+        let hand_vig = 0;
+        let hand_end = 0;
+        let hand_vit = 0;
+        let hand_str = 0;
+        let hand_dex = 0;
+        let hand_adp = 0;
+        let hand_int = 0;
+        let hand_fth = 0;
+
+        let ring1_str = 0;
+        let ring1_dex = 0;
+        let ring1_adp = 0;
+        let ring1_int = 0;
+        let ring1_fth = 0;
+
+        let ring2_str = 0;
+        let ring2_dex = 0;
+        let ring2_adp = 0;
+        let ring2_int = 0;
+        let ring2_fth = 0;
+
+        let ring3_str = 0;
+        let ring3_dex = 0;
+        let ring3_adp = 0;
+        let ring3_int = 0;
+        let ring3_fth = 0;
+
+        let ring4_str = 0;
+        let ring4_dex = 0;
+        let ring4_adp = 0;
+        let ring4_int = 0;
+        let ring4_fth = 0;
+
+        let balm_str = 0;
+        let balm_dex = 0;
+        let balm_int = 0;
+        let balm_fth = 0;
+
+        function resethelm(){
+            helm_vig = 0;
+            helm_end = 0;
+            helm_vit = 0;
+            helm_str = 0;
+            helm_dex = 0;
+            helm_adp = 0;
+            helm_int = 0;
+            helm_fth = 0;
+        }
+        function resetarm(){
+            arm_adp = 0;
+            arm_int = 0;
+            arm_fth = 0;
+        }
+        function resetleg(){
+            leg_vig = 0;
+            leg_end = 0;
+            leg_adp = 0;
+            leg_int = 0;
+        }
+        function resethand(){
+            let hand_vig = 0;
+            let hand_end = 0;
+            let hand_vit = 0;
+            let hand_str = 0;
+            let hand_dex = 0;
+            let hand_adp = 0;
+            let hand_int = 0;
+            let hand_fth = 0;
+        }
+        function resetring1(){
+            ring1_str = 0;
+            ring1_dex = 0;
+            ring1_adp = 0;
+            ring1_int = 0;
+            ring1_fth = 0;
+        }
+        function resetring2(){
+            ring2_str = 0;
+            ring2_dex = 0;
+            ring2_adp = 0;
+            ring2_int = 0;
+            ring2_fth = 0;
+        }
+        function resetring3(){
+            ring3_str = 0;
+            ring3_dex = 0;
+            ring3_adp = 0;
+            ring3_int = 0;
+            ring3_fth = 0;
+        }
+        function resetring4(){
+            ring4_str = 0;
+            ring4_dex = 0;
+            ring4_adp = 0;
+            ring4_int = 0;
+            ring4_fth = 0;
+        }
+        function resetbalm(){
+            balm_str = 0;
+            balm_dex = 0;
+            balm_int = 0;
+            balm_fth = 0;
+        }
+        function disablering(){
+            if((ring1_str + ring2_str + ring3_str + ring4_str) == 5){
+                document.getElementById("strength1").disabled = true;
+                document.getElementById("strength2").disabled = true;
+                document.getElementById("strength3").disabled = true;
+                document.getElementById("strength4").disabled = true;
+            }else{
+                document.getElementById("strength1").disabled = false;
+                document.getElementById("strength2").disabled = false;
+                document.getElementById("strength3").disabled = false;
+                document.getElementById("strength4").disabled = false;
+            }
+            if((ring1_dex + ring2_dex + ring3_dex + ring4_dex) == 5){
+                document.getElementById("dexterity1").disabled = true;
+                document.getElementById("dexterity2").disabled = true;
+                document.getElementById("dexterity3").disabled = true;
+                document.getElementById("dexterity4").disabled = true;
+            }else{
+                document.getElementById("dexterity1").disabled = false;
+                document.getElementById("dexterity2").disabled = false;
+                document.getElementById("dexterity3").disabled = false;
+                document.getElementById("dexterity4").disabled = false;
+            }
+            if((ring1_adp + ring2_adp + ring3_adp + ring4_adp) > 0){
+                document.getElementById("simple1").disabled = true;
+                document.getElementById("simple2").disabled = true;
+                document.getElementById("simple3").disabled = true;
+                document.getElementById("simple4").disabled = true;
+            }else{
+                document.getElementById("simple1").disabled = false;
+                document.getElementById("simple2").disabled = false;
+                document.getElementById("simple3").disabled = false;
+                document.getElementById("simple4").disabled = false;
+            }
+            if((ring1_int + ring2_int + ring3_int + ring4_int) > 0){
+                document.getElementById("knowledge1").disabled = true;
+                document.getElementById("knowledge2").disabled = true;
+                document.getElementById("knowledge3").disabled = true;
+                document.getElementById("knowledge4").disabled = true;
+            }else{
+                document.getElementById("knowledge1").disabled = false;
+                document.getElementById("knowledge2").disabled = false;
+                document.getElementById("knowledge3").disabled = false;
+                document.getElementById("knowledge4").disabled = false;
+            }
+            if((ring1_fth + ring2_fth + ring3_fth + ring4_fth) > 0){
+                document.getElementById("prayer1").disabled = true;
+                document.getElementById("prayer2").disabled = true;
+                document.getElementById("prayer3").disabled = true;
+                document.getElementById("prayer4").disabled = true;
+            }else{
+                document.getElementById("prayer1").disabled = false;
+                document.getElementById("prayer2").disabled = false;
+                document.getElementById("prayer3").disabled = false;
+                document.getElementById("prayer4").disabled = false;
+            }
+        }
+
+        function calculatehead(){
+            switch(document.getElementById("selecthead").value){
+                case "nohead?": 
+                    resethelm();
+                    document.getElementById("helm").innerHTML = "";
+                    break;
+                case "cale": 
+                    resethelm();
+                    helm_dex = 2;
+                    helm_end = 1;
+                    document.getElementById("helm").innerHTML = "+1 End, +2 Dex";
+                    break;
+                case "mad": 
+                    resethelm();
+                    helm_adp = 2;
+                    document.getElementById("helm").innerHTML = "+2 Adp";
+                    break;
+                case "sunken": 
+                    resethelm();
+                    helm_vig = -1;
+                    helm_end = 1;
+                    helm_vit = -1;
+                    helm_str = 1;
+                    helm_dex = 1;
+                    helm_int = 1;
+                    helm_fth = 1;
+                    document.getElementById("helm").innerHTML = "-1 Vig, +1 End, -1 Vit, +1 Str, +1 Dex, +1 Int, +1 Fth";
+                    break;
+                case "vel": 
+                    resethelm();
+                    helm_end = 1;
+                    helm_vit = 1;
+                    document.getElementById("helm").innerHTML = "+1 End, +1 Vit";
+                    break;
+                case "ven": 
+                    resethelm();
+                    helm_vit = 2;
+                    document.getElementById("helm").innerHTML = "+2 Vit";
+                    break;
+                case "king": 
+                    resethelm();
+                    helm_int = 3;
+                    helm_fth = 3;
+                    document.getElementById("helm").innerHTML = "+3 Int, +3 Fth";
+                    break;
+                case "hood2": 
+                    resethelm();
+                    helm_int = 2;
+                    helm_fth = 2;
+                    document.getElementById("helm").innerHTML = "+2 Int, +2 Fth";
+                    break;
+                case "hood1": 
+                    resethelm();
+                    helm_int = 1;
+                    helm_fth = 1;
+                    document.getElementById("helm").innerHTML = "+1 Int, +1 Fth";
+                    break;
+                case "hat3": 
+                    resethelm();
+                    helm_int = 3;
+                    document.getElementById("helm").innerHTML = "+3 Int";
+                    break;
+                case "hat2": 
+                    resethelm();
+                    helm_int = 2;
+                    document.getElementById("helm").innerHTML = "+2 Int";
+                    break;
+                case "hat1": 
+                    resethelm();
+                    helm_int = 1;
+                    document.getElementById("helm").innerHTML = "+1 Int";
+                    break;
+                case "phat": 
+                    resethelm();
+                    helm_int = -1;
+                    helm_fth = 2;
+                    document.getElementById("helm").innerHTML = "-1 Int, +2 Fth";
+                    break;
+                case "headpiece2": 
+                    resethelm();
+                    helm_fth = 2;
+                    document.getElementById("helm").innerHTML = "+2 Fth";
+                    break;
+                case "headpiece1": 
+                    resethelm();
+                    helm_fth = 1;
+                    document.getElementById("helm").innerHTML = "+1 Fth";
+                    break;
+            }
+        }
+        function calculatechest(){
+            switch(document.getElementById("selectchest").value){
+                case "barechest": 
+                    chest_adp = 0;
+                    chest_int = 0;
+                    document.getElementById("chest").innerHTML = "";
+                    break;
+                case "pchest": 
+                    chest_adp = 2;
+                    chest_int = -1;
+                    document.getElementById("chest").innerHTML = "+2 Adp, -1 Int";
+                default: 
+                    console.log("chest");
+                    break;
+            }
+        }
+        function calculatearm(){
+            switch(document.getElementById("selectarm").value){
+                case "barefist": 
+                    resetarm();
+                    document.getElementById("arm").innerHTML = "";
+                    break;
+                case "parm": 
+                    resetarm();
+                    arm_adp = 2;
+                    arm_int = -1;
+                    document.getElementById("arm").innerHTML = "+2 Adp, -1 Int";
+                    break;
+                case "cuff": 
+                    resetarm();
+                    arm_fth = 1;
+                    document.getElementById("arm").innerHTML = "+1 Fth";
+                    break;
+                default: 
+                    console.log("arm");
+                    break;
+            }
+        }
+        function calculateleg(){
+            switch(document.getElementById("selectleg").value){
+                case "unshavenlegs": 
+                    resetleg();
+                    document.getElementById("leg").innerHTML = "";
+                    break;
+                case "pleg": 
+                    resetleg();
+                    leg_adp = 2;
+                    leg_int = -1;
+                    document.getElementById("leg").innerHTML = "+2 Adp, -1 Int";
+                    break;
+                case "pain": 
+                    resetleg();
+                    leg_vig = 2;
+                    leg_end = 1;
+                    document.getElementById("leg").innerHTML = "+2 Vig, +1 End";
+                    break;
+                default: 
+                    console.log("leg");
+                    break;
+            }
+        }
+        function calculatehand(){
+            switch(document.getElementById("selecthand").value){
+                case "hegothands": 
+                    resethand();
+                    document.getElementById("hand").innerHTML = "";
+                    break;
+                case "shield": 
+                    resethand();
+                    hand_vig = 1;
+                    hand_end = 1;
+                    hand_str = 4;
+                    hand_dex = 4;
+                    hand_adp = 1;
+                    hand_int = 1;
+                    hand_fth = 1;
+                    document.getElementById("hand").innerHTML = "+1 Vig, +1 End, +4 Str, +4 End, +1 Adp, +1 Int, +1 Fth";
+                    break;
+                case "laddle": 
+                    resethand();
+                    hand_end = 1;
+                    hand_vit = 1;
+                    hand_dex = -1;
+                    hand_adp = 2;
+                    document.getElementById("hand").innerHTML = "+1 End, +1 Vit, -1 Dex, +2 Adp";
+                    break;
+                case "hook": 
+                    resethand();
+                    hand_dex = 5;
+                    hand_adp = -3;
+                    document.getElementById("hand").innerHTML = "+5 Dex, -3 Adp";
+                    break;
+                case "deargod": 
+                    resethand();
+                    document.getElementById("hand").innerHTML = "";
+                    break;
+                default: 
+                    console.log("hand");
+                    break;
+            }
+        }
+        function calculatering1(){
+            switch(document.getElementById("selectring1").value){
+                case "maidenless": 
+                    resetring1();
+                    document.getElementById("ring1").innerHTML = "";
+                    disablering();
+                    break;
+                case "strength":
+                    resetring1();
+                    ring1_str = 5;
+                    document.getElementById("ring1").innerHTML = "+5 Str";
+                    disablering();
+                    break;
+                case "dexterity": 
+                    resetring1();
+                    ring1_dex = 5;
+                    document.getElementById("ring1").innerHTML = "+5 Dex";
+                    disablering();
+                    break;
+                case "simple": 
+                    resetring1();
+                    ring1_adp = 5;
+                    document.getElementById("ring1").innerHTML = "+5 Adp";
+                    disablering();
+                    break;
+                case "knowledge":
+                    resetring1();
+                    ring1_int = 5;
+                    document.getElementById("ring1").innerHTML = "+5 Int"
+                    disablering();
+                    break;
+                case "prayer": 
+                    resetring1();
+                    ring1_fth = 5;
+                    document.getElementById("ring1").innerHTML = "+5 Fth";
+                    disablering();
+                    break;
+                default: 
+                    console.log("ring1");
+                    break;
+            }
+        }
+        function calculatering2(){
+            switch(document.getElementById("selectring2").value){
+                case "maidenless": 
+                    resetring2();
+                    document.getElementById("ring2").innerHTML = "";
+                    console.log("maidenless");
+                    disablering();
+                    break;
+                case "strength":
+                    resetring2();
+                    ring2_str = 5;
+                    document.getElementById("ring2").innerHTML = "+5 Str";
+                    disablering();
+                    break;
+                case "dexterity": 
+                    resetring2();
+                    ring2_dex = 5;
+                    document.getElementById("ring2").innerHTML = "+5 Dex";
+                    disablering();
+                    break;
+                case "simple": 
+                    resetring2();
+                    ring2_adp = 5;
+                    document.getElementById("ring2").innerHTML = "+5 Adp";
+                    disablering();
+                    break;
+                case "knowledge":
+                    resetring2();
+                    ring2_int = 5;
+                    document.getElementById("ring2").innerHTML = "+5 Int"
+                    disablering();
+                    break;
+                case "prayer": 
+                    resetring2();
+                    ring2_fth = 5;
+                    document.getElementById("ring2").innerHTML = "+5 Fth";
+                    disablering();
+                    break;
+                default: 
+                    console.log("ring2");
+                    break;
+            }
+        }
+        function calculatering3(){
+            switch(document.getElementById("selectring3").value){
+                case "maidenless": 
+                    resetring3();
+                    document.getElementById("ring3").innerHTML = "";
+                    disablering();
+                    break;
+                case "strength":
+                    resetring3();
+                    ring3_str = 5;
+                    document.getElementById("ring3").innerHTML = "+5 Str";
+                    disablering();
+                    break;
+                case "dexterity": 
+                    resetring3();
+                    ring3_dex = 5;
+                    document.getElementById("ring3").innerHTML = "+5 Dex";
+                    disablering();
+                    break;
+                case "simple": 
+                    resetring3();
+                    ring3_adp = 5;
+                    document.getElementById("ring3").innerHTML = "+5 Adp";
+                    disablering();
+                    break;
+                case "knowledge":
+                    resetring3();
+                    ring3_int = 5;
+                    document.getElementById("ring3").innerHTML = "+5 Int"
+                    disablering();
+                    break;
+                case "prayer": 
+                    resetring3();
+                    ring3_fth = 5;
+                    document.getElementById("ring3").innerHTML = "+5 Fth";
+                    disablering();
+                    break;
+                default: 
+                    console.log("ring3");
+                    break;
+            }
+        }
+        function calculatering4(){
+            switch(document.getElementById("selectring4").value){
+                case "maidenless": 
+                    resetring4();
+                    document.getElementById("ring4").innerHTML = "";
+                    disablering();
+                    break;
+                case "strength":
+                    resetring4();
+                    ring4_str = 5;
+                    document.getElementById("ring4").innerHTML = "+5 Str";
+                    disablering();
+                    break;
+                case "dexterity": 
+                    resetring4();
+                    ring4_dex = 5;
+                    document.getElementById("ring4").innerHTML = "+5 Dex";
+                    disablering();
+                    break;
+                case "simple": 
+                    resetring4();
+                    ring4_adp = 5;
+                    document.getElementById("ring4").innerHTML = "+5 Adp";
+                    disablering();
+                    break;
+                case "knowledge":
+                    resetring4();
+                    ring4_int = 5;
+                    document.getElementById("ring4").innerHTML = "+5 Int"
+                    disablering();
+                    break;
+                case "prayer": 
+                    resetring4();
+                    ring4_fth = 5;
+                    document.getElementById("ring4").innerHTML = "+5 Fth";
+                    disablering();
+                    break;
+                default: 
+                    console.log("ring4");
+                    break;
+            }
+        }
+        function calculatebalm(){
+            switch(document.getElementById("selectbalm").value){
+                case "drugfree": 
+                    resetbalm();
+                    document.getElementById("balm").innerHTML = "";
+                    break;
+                case "steroids": 
+                    resetbalm();
+                    balm_str = 5;
+                    document.getElementById("balm").innerHTML = "+5 Str";
+                    break;
+                case "coffee": 
+                    resetbalm();
+                    balm_dex = 5;
+                    document.getElementById("balm").innerHTML = "+5 Dex";
+                    break;
+                case "adderall": 
+                    resetbalm();
+                    balm_int = 5;
+                    document.getElementById("balm").innerHTML = "+5 Int";
+                    break;
+                case "shrooms": 
+                    resetbalm();
+                    balm_fth = 5;
+                    document.getElementById("balm").innerHTML = "+5 Fth";
+                    break;
+                default: 
+                    console.log("drug");
+                    break;
+            }
+        }
+        let final_vig = 1;
+        let final_end = 1;
+        let final_vit = 1;
+        let final_att = 1;
+        let final_str = 1;
+        let final_dex = 1;
+        let final_adp = 1;
+        let final_int = 1;
+        let final_fth = 1;
+
+        function finalcalculate(){
+            final_vig = vig + helm_vig + leg_vig + hand_vig;
+            final_end = end + helm_end + leg_end + hand_end;
+            final_vit = vit + helm_vit + hand_vit;
+            final_att = att;
+            final_str = str + helm_str + hand_str + ring1_str + ring2_str + ring3_str + ring4_str + balm_str;
+            final_dex = dex + helm_dex + hand_dex + ring1_dex + ring2_dex + ring3_dex + ring4_dex + balm_dex;
+            final_adp = adp + helm_adp + chest_adp + arm_adp + leg_adp + hand_adp + ring1_adp + ring2_adp + ring3_adp + ring4_adp;
+            final_int = int + helm_int + chest_int + arm_int + leg_int + hand_int + ring1_int + ring2_int + ring3_int + ring4_int + balm_int;
+            final_fth = fth + helm_fth + arm_fth + hand_fth + ring1_fth + ring2_fth + ring3_fth + ring4_fth + balm_fth;
+            if(final_vig <= 0){
+                final_vig = 1;
+            }
+            if(final_vit <= 0){
+                final_vit = 1;
+            }
+            if(final_dex <= 0){
+                final_dex = 1;
+            }
+            if(final_adp <= 0){
+                final_adp = 1;
+            }
+            if(final_int <= 0){
+                final_int = 1;
+            }
+            document.getElementById("finale_vig").innerHTML = final_vig;
+            document.getElementById("finale_end").innerHTML = final_end;
+            document.getElementById("finale_vit").innerHTML = final_vit;
+            document.getElementById("finale_att").innerHTML = final_att;
+            document.getElementById("finale_str").innerHTML = final_str;
+            document.getElementById("finale_dex").innerHTML = final_dex;
+            document.getElementById("finale_adp").innerHTML = final_adp;
+            document.getElementById("finale_int").innerHTML = final_int;
+            document.getElementById("finale_fth").innerHTML = final_fth;
+            document.getElementById("final").style.display = "inline-block";
+        }
+
+    </script>
+
+</body>
+</html>
