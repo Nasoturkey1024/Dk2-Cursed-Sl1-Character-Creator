@@ -13,7 +13,15 @@
         h1 {
             text-align:center;
         }
-        #left {
+        table {
+            border: 1px solid black;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        th, td, tr {
+            border: 1px solid black;
+        }
+        .left {
             width: 50%;
             float: left;
             text-align: center;
@@ -63,18 +71,35 @@
             width: 100%;
             text-align: center;
         }
-        
+        #showagility, #showslot {
+            display: none;
+        }
+        .agility_info {
+            width: 50%;
+            text-align: center;
+            float: left;
+        }
+        .attunement_info{
+            width:50%;
+            text-align: center;
+            float: right;
+        }
+        .chime_info {
+            width:34%;
+            text-align: center;
+            float: right;
+        }
     </style>
 </head>
 <body>
     <h1>Create Your Character</h1>
-    <div id="left"> <!--Stat Page. Vig, End, Vit, Att,Str, Dex,Adp,Int,Fai-->
+    <div class="left"> <!--Stat Page. Vig, End, Vit, Att,Str, Dex,Adp,Int,Fai-->
         <h2>Soul Level <span id="level1">-44</span></h2>
         <div class="lefter">
             <p class="height">Vigor:</p>
             <p class="height">Endurance:</p>
             <p class="height">Vitality:</p>
-            <p class="height">Attuenment:</p>
+            <p class="height">Attunement:</p>
             <p class="height">Strength:</p>
             <p class="height">Dexterity:</p>
             <p class="height">Adaptability:</p>
@@ -92,6 +117,7 @@
         <p class="height"><button onclick="decreament('int1')">-</button><span id="int1">1</span><button onclick="increament('int1')">+</button></p>
         <p class="height"><button onclick="decreament('fth1')">-</button><span id="fth1">1</span><button onclick="increament('fth1')">+</button></p>
         <p class="height"><button onclick="reset()">Reset</button></p>
+        <p class="height"><button onclick="levelone()">SL1</button></p>
         </div>
 
     </div>
@@ -121,6 +147,7 @@
                 <option value="vel">Velstadt's Helm(+1 End/Vit)</option>
                 <option value="ven">Vengarl's Helm(+2 Vit)</option>
                 
+                <option value="slot">Black Witch Hat(+1 Slot)</option>
                 <option value="king">King's Crown(+3 Int/Fth)</option>
                 <option value="hood2">Black Hood(+2 Int/Fth)</option>
                 <option value=hood1>Leydia Black Hood(+1 Int/Fth)</option>
@@ -172,6 +199,9 @@
                 <option id="simple1" value="simple">Simpleton's Ring(+5 Adp)</option>
                 <option id="knowledge1" value="knowledge">Ring of Knowledge(+5 Int)</option>
                 <option id="prayer1" value="prayer">Ring of Prayer(+5 Fth)</option>
+                <option id="south1+0" value="south1">Southern Ritual Band(+1 Slot)</option>
+                <option id="south1+1" value="south2">Southern Ritual Band +1(+2 Slot)</option>
+                <option id="south1+2" value="south3">Southern Ritual Band +2(+3 Slot)</option>
             </select></p>
             <p><select onchange="calculatering2()" id="selectring2">
                 <option id="maidenless2" value="maidenless">None</option>
@@ -180,6 +210,9 @@
                 <option id="simple2" value="simple">Simpleton's Ring(+5 Adp)</option>
                 <option id="knowledge2" value="knowledge">Ring of Knowledge(+5 Int)</option>
                 <option id="prayer2" value="prayer">Ring of Prayer(+5 Fth)</option>
+                <option id="south2+0" value="south1">Southern Ritual Band(+1 Slot)</option>
+                <option id="south2+1" value="south2">Southern Ritual Band +1(+2 Slot)</option>
+                <option id="south2+2" value="south3">Southern Ritual Band +2(+3 Slot)</option>
             </select></p>
             <p><select onchange="calculatering3()" id="selectring3">
                 <option id="maidenless3" value="maidenless">None</option>
@@ -188,6 +221,9 @@
                 <option id="simple3" value="simple">Simpleton's Ring(+5 Adp)</option>
                 <option id="knowledge3" value="knowledge">Ring of Knowledge(+5 Int)</option>
                 <option id="prayer3" value="prayer">Ring of Prayer(+5 Fth)</option>
+                <option id="south3+0" value="south1">Southern Ritual Band(+1 Slot)</option>
+                <option id="south3+1" value="south2">Southern Ritual Band +1(+2 Slot)</option>
+                <option id="south3+2" value="south3">Southern Ritual Band +2(+3 Slot)</option>
             </select></p>
             <p><select onchange="calculatering4()" id="selectring4">
                 <option id="maidenless4" value="maidenless">None</option>
@@ -196,6 +232,9 @@
                 <option id="simple4" value="simple">Simpleton's Ring(+5 Adp)</option>
                 <option id="knowledge4" value="knowledge">Ring of Knowledge(+5 Int)</option>
                 <option id="prayer4" value="prayer">Ring of Prayer(+5 Fth)</option>
+                <option id="south4+0" value="south1">Southern Ritual Band(+1 Slot)</option>
+                <option id="south4+1" value="south2">Southern Ritual Band +1(+2 Slot)</option>
+                <option id="south4+2" value="south3">Southern Ritual Band +2(+3 Slot)</option>
             </select></p>
             <p><select onchange="calculatebalm()" id="selectbalm">
                 <option value="drugfree">None</option>
@@ -222,19 +261,20 @@
     </div>
 
     <div id="final"> <!--Final Result, starts hidden-->
+
         <h2>Final Character Stats</h2>
         <div class="lefter">
             <p class="height">Vigor:</p>
             <p class="height">Endurance:</p>
             <p class="height">Vitality:</p>
-            <p class="height">Attuenment:</p>
+            <p class="height">Attunement:</p>
             <p class="height">Strength:</p>
             <p class="height">Dexterity:</p>
             <p class="height">Adaptability:</p>
             <p class="height">Intelligence:</p>
             <p class="height">Faith:</p>
         </div>
-        <div class="else">
+        <div class="else" style="width:5%">
             <p id="finale_vig" class="height"></p>
             <p id="finale_end" class="height"></p>
             <p id="finale_vit" class="height"></p>
@@ -245,9 +285,121 @@
             <p id="finale_int" class="height"></p>
             <p id="finale_fth" class="height"></p>
         </div>
+        <div class="lefter" style="width:10%">
+            <p class="height">Spell Slots:</p>
+            <p class="height">Agility:</p>
+        </div>
+        <div class="else" style="width:5%">
+            <p id="finale_slot" class="height"></p>
+            <p id="finale_agility" class="height"></p>
+        </div>
     </div>
     <div class="button">
         <button onclick="finalcalculate()">Calculate Final Stats</button>
+    </div>
+    <div class="agility_info">
+        <p class="height"><button id="agilitybutton" onclick="toggleagility()">Reveal Agility Info</button></p>
+        <div id="showagility">
+            <h2 style="text-align:center">Agility Information</h2>
+            <table>
+                <tr>
+                    <th>Agility</th>
+                    <th>Iframes in Roll</th>
+                </tr>
+                <tr>
+                    <td>85</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>86</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>88</td>
+                    <td>9</td>
+                </tr>
+                <tr>
+                    <td>92</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>96</td>
+                    <td>11</td>
+                </tr>
+                <tr>
+                    <td>99</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>105</td>
+                    <td>13</td>
+                </tr>
+                <tr>
+                    <td>111</td>
+                    <td>14</td>
+                </tr>
+                <tr>
+                    <td>114</td>
+                    <td>15</td>
+                </tr>
+                <tr>
+                    <td>116</td>
+                    <td>16</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="attunement_info">
+        <p class="height"><button id="slotbutton" onclick="toggleslot()">Reveal Spell Slot Info</button></p>
+        <div id="showslot">
+        <h2>Attunement Information</h2>
+        <table>
+            <tr>
+                <th>Attunement Stat</th>
+                <th>Attunement Slots</th>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>25</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>30</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>40</td>
+                <td>7</td>
+            </tr>
+            <tr>
+                <td>50</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>60</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>75</td>
+                <td>10</td>
+            </tr>            
+        </table>
+        </div>
     </div>
 
     <script>
@@ -430,6 +582,28 @@
             document.getElementById("fth1").innerHTML = fth;
             document.getElementById("level1").innerHTML = level;
         }
+        function levelone(){
+            vig = 6;
+            end = 6;
+            vit = 6;
+            att = 6;
+            str = 6;
+            dex = 6;
+            adp = 6;
+            int = 6;
+            fth = 6;
+            level = 1;
+            document.getElementById("vig1").innerHTML = vig;
+            document.getElementById("end1").innerHTML = end;
+            document.getElementById("vit1").innerHTML = vit;
+            document.getElementById("att1").innerHTML = att;
+            document.getElementById("str1").innerHTML = str;
+            document.getElementById("dex1").innerHTML = dex;
+            document.getElementById("adp1").innerHTML = adp;
+            document.getElementById("int1").innerHTML = int;
+            document.getElementById("fth1").innerHTML = fth;
+            document.getElementById("level1").innerHTML = level;
+        }
         // Headpiece affect all stats except attunement
         let helm_vig = 0;
         let helm_end = 0;
@@ -439,6 +613,7 @@
         let helm_adp = 0;
         let helm_int = 0;
         let helm_fth = 0;
+        let helm_slot = 0;
 
         let chest_adp = 0;
         let chest_int = 0; // only peasant attire changes stats
@@ -466,24 +641,28 @@
         let ring1_adp = 0;
         let ring1_int = 0;
         let ring1_fth = 0;
+        let ring1_slot = 0;
 
         let ring2_str = 0;
         let ring2_dex = 0;
         let ring2_adp = 0;
         let ring2_int = 0;
         let ring2_fth = 0;
+        let ring2_slot = 0;
 
         let ring3_str = 0;
         let ring3_dex = 0;
         let ring3_adp = 0;
         let ring3_int = 0;
         let ring3_fth = 0;
+        let ring3_slot = 0;
 
         let ring4_str = 0;
         let ring4_dex = 0;
         let ring4_adp = 0;
         let ring4_int = 0;
         let ring4_fth = 0;
+        let ring4_slot = 0;
 
         let balm_str = 0;
         let balm_dex = 0;
@@ -499,6 +678,7 @@
             helm_adp = 0;
             helm_int = 0;
             helm_fth = 0;
+            helm_slot = 0;
         }
         function resetarm(){
             arm_adp = 0;
@@ -512,14 +692,14 @@
             leg_int = 0;
         }
         function resethand(){
-            let hand_vig = 0;
-            let hand_end = 0;
-            let hand_vit = 0;
-            let hand_str = 0;
-            let hand_dex = 0;
-            let hand_adp = 0;
-            let hand_int = 0;
-            let hand_fth = 0;
+            hand_vig = 0;
+            hand_end = 0;
+            hand_vit = 0;
+            hand_str = 0;
+            hand_dex = 0;
+            hand_adp = 0;
+            hand_int = 0;
+            hand_fth = 0;
         }
         function resetring1(){
             ring1_str = 0;
@@ -527,6 +707,7 @@
             ring1_adp = 0;
             ring1_int = 0;
             ring1_fth = 0;
+            ring1_slot = 0;
         }
         function resetring2(){
             ring2_str = 0;
@@ -534,6 +715,7 @@
             ring2_adp = 0;
             ring2_int = 0;
             ring2_fth = 0;
+            ring2_slot = 0;
         }
         function resetring3(){
             ring3_str = 0;
@@ -541,6 +723,7 @@
             ring3_adp = 0;
             ring3_int = 0;
             ring3_fth = 0;
+            ring3_slot = 0;
         }
         function resetring4(){
             ring4_str = 0;
@@ -548,6 +731,7 @@
             ring4_adp = 0;
             ring4_int = 0;
             ring4_fth = 0;
+            ring4_slot = 0;
         }
         function resetbalm(){
             balm_str = 0;
@@ -611,7 +795,64 @@
                 document.getElementById("prayer3").disabled = false;
                 document.getElementById("prayer4").disabled = false;
             }
+            if(ring1_slot + ring2_slot + ring3_slot + ring4_slot == 0){
+                document.getElementById("south1+0").disabled = false;
+                document.getElementById("south1+1").disabled = false;
+                document.getElementById("south1+2").disabled = false;
+                document.getElementById("south2+0").disabled = false;
+                document.getElementById("south2+1").disabled = false;
+                document.getElementById("south2+2").disabled = false;
+                document.getElementById("south3+0").disabled = false;
+                document.getElementById("south3+1").disabled = false;
+                document.getElementById("south3+2").disabled = false;
+                document.getElementById("south4+0").disabled = false;
+                document.getElementById("south4+1").disabled = false;
+                document.getElementById("south4+2").disabled = false;
+            }else{
+                if(ring1_slot > 0){
+                    document.getElementById("south2+0").disabled = true;
+                    document.getElementById("south2+1").disabled = true;
+                    document.getElementById("south2+2").disabled = true;
+                    document.getElementById("south3+0").disabled = true;
+                    document.getElementById("south3+1").disabled = true;
+                    document.getElementById("south3+2").disabled = true;
+                    document.getElementById("south4+0").disabled = true;
+                    document.getElementById("south4+1").disabled = true;
+                    document.getElementById("south4+2").disabled = true;
+                }else if(ring2_slot > 0){
+                    document.getElementById("south1+0").disabled = true;
+                    document.getElementById("south1+1").disabled = true;
+                    document.getElementById("south1+2").disabled = true;
+                    document.getElementById("south3+0").disabled = true;
+                    document.getElementById("south3+1").disabled = true;
+                    document.getElementById("south3+2").disabled = true;
+                    document.getElementById("south4+0").disabled = true;
+                    document.getElementById("south4+1").disabled = true;
+                    document.getElementById("south4+2").disabled = true;
+                }else if(ring3_slot > 0){
+                    document.getElementById("south1+0").disabled = true;
+                    document.getElementById("south1+1").disabled = true;
+                    document.getElementById("south1+2").disabled = true;
+                    document.getElementById("south2+0").disabled = true;
+                    document.getElementById("south2+1").disabled = true;
+                    document.getElementById("south2+2").disabled = true;
+                    document.getElementById("south4+0").disabled = true;
+                    document.getElementById("south4+1").disabled = true;
+                    document.getElementById("south4+2").disabled = true;
+                }else{
+                    document.getElementById("south1+0").disabled = true;
+                    document.getElementById("south1+1").disabled = true;
+                    document.getElementById("south1+2").disabled = true;
+                    document.getElementById("south2+0").disabled = true;
+                    document.getElementById("south2+1").disabled = true;
+                    document.getElementById("south2+2").disabled = true;
+                    document.getElementById("south3+0").disabled = true;
+                    document.getElementById("south3+1").disabled = true;
+                    document.getElementById("south3+2").disabled = true;
+                }
+            }
         }
+
 
         function calculatehead(){
             switch(document.getElementById("selecthead").value){
@@ -651,6 +892,11 @@
                     resethelm();
                     helm_vit = 2;
                     document.getElementById("helm").innerHTML = "+2 Vit";
+                    break;
+                case "slot": 
+                    resethelm();
+                    helm_slot = 1;
+                    document.getElementById("helm").innerHTML = "+1 Attunement Slot";
                     break;
                 case "king": 
                     resethelm();
@@ -841,6 +1087,24 @@
                     document.getElementById("ring1").innerHTML = "+5 Fth";
                     disablering();
                     break;
+                case "south1":
+                    resetring1();
+                    ring1_slot = 1;
+                    document.getElementById("ring1").innerHTML = "+1 Attunement Slot";
+                    disablering();
+                    break;
+                case "south2": 
+                    resetring1();
+                    ring1_slot = 2;
+                    document.getElementById("ring1").innerHTML = "+2 Attunement Slot";
+                    disablering();
+                    break;
+                case "south3": 
+                    resetring1();
+                    ring1_slot = 3;
+                    document.getElementById("ring1").innerHTML = "+3 Attunement Slot";
+                    disablering();
+                    break;
                 default: 
                     console.log("ring1");
                     break;
@@ -851,7 +1115,6 @@
                 case "maidenless": 
                     resetring2();
                     document.getElementById("ring2").innerHTML = "";
-                    console.log("maidenless");
                     disablering();
                     break;
                 case "strength":
@@ -882,6 +1145,24 @@
                     resetring2();
                     ring2_fth = 5;
                     document.getElementById("ring2").innerHTML = "+5 Fth";
+                    disablering();
+                    break;
+                case "south1":
+                    resetring2();
+                    ring2_slot = 1;
+                    document.getElementById("ring2").innerHTML = "+1 Attunement Slot";
+                    disablering();
+                    break;
+                case "south2": 
+                    resetring2();
+                    ring2_slot = 2;
+                    document.getElementById("ring2").innerHTML = "+2 Attunement Slot";
+                    disablering();
+                    break;
+                case "south3": 
+                    resetring2();
+                    ring2_slot = 3;
+                    document.getElementById("ring2").innerHTML = "+3 Attunement Slot";
                     disablering();
                     break;
                 default: 
@@ -926,6 +1207,24 @@
                     document.getElementById("ring3").innerHTML = "+5 Fth";
                     disablering();
                     break;
+                case "south1":
+                    resetring3();
+                    ring3_slot = 1;
+                    document.getElementById("ring3").innerHTML = "+1 Attunement Slot";
+                    disablering();
+                    break;
+                case "south2": 
+                    resetring3();
+                    ring3_slot = 2;
+                    document.getElementById("ring3").innerHTML = "+2 Attunement Slot";
+                    disablering();
+                    break;
+                case "south3": 
+                    resetring3();
+                    ring3_slot = 3;
+                    document.getElementById("ring3").innerHTML = "+3 Attunement Slot";
+                    disablering();
+                    break;
                 default: 
                     console.log("ring3");
                     break;
@@ -966,6 +1265,24 @@
                     resetring4();
                     ring4_fth = 5;
                     document.getElementById("ring4").innerHTML = "+5 Fth";
+                    disablering();
+                    break;
+                case "south1":
+                    resetring4();
+                    ring4_slot = 1;
+                    document.getElementById("ring4").innerHTML = "+1 Attunement Slot";
+                    disablering();
+                    break;
+                case "south2": 
+                    resetring4();
+                    ring4_slot = 2;
+                    document.getElementById("ring4").innerHTML = "+2 Attunement Slot";
+                    disablering();
+                    break;
+                case "south3": 
+                    resetring4();
+                    ring4_slot = 3;
+                    document.getElementById("ring4").innerHTML = "+3 Attunement Slot";
                     disablering();
                     break;
                 default: 
@@ -1013,6 +1330,7 @@
         let final_adp = 1;
         let final_int = 1;
         let final_fth = 1;
+        let final_slot = 0;
 
         function finalcalculate(){
             final_vig = vig + helm_vig + leg_vig + hand_vig;
@@ -1024,6 +1342,8 @@
             final_adp = adp + helm_adp + chest_adp + arm_adp + leg_adp + hand_adp + ring1_adp + ring2_adp + ring3_adp + ring4_adp;
             final_int = int + helm_int + chest_int + arm_int + leg_int + hand_int + ring1_int + ring2_int + ring3_int + ring4_int + balm_int;
             final_fth = fth + helm_fth + arm_fth + hand_fth + ring1_fth + ring2_fth + ring3_fth + ring4_fth + balm_fth;
+            final_slot = attunementslot(att) + helm_slot + ring1_slot + ring2_slot + ring3_slot + ring4_slot;
+            calculateagility();
             if(final_vig <= 0){
                 final_vig = 1;
             }
@@ -1039,6 +1359,9 @@
             if(final_int <= 0){
                 final_int = 1;
             }
+            if(agility < 85){
+                agility = 85;
+            }
             document.getElementById("finale_vig").innerHTML = final_vig;
             document.getElementById("finale_end").innerHTML = final_end;
             document.getElementById("finale_vit").innerHTML = final_vit;
@@ -1048,9 +1371,78 @@
             document.getElementById("finale_adp").innerHTML = final_adp;
             document.getElementById("finale_int").innerHTML = final_int;
             document.getElementById("finale_fth").innerHTML = final_fth;
+            document.getElementById("finale_slot").innerHTML = final_slot;
+            document.getElementById("finale_agility").innerHTML = agility;
             document.getElementById("final").style.display = "inline-block";
         }
+        let agility = 85;
 
+        function calculateagility(){
+            if(3*final_adp + final_att < 120){
+                agility = Math.floor(80 + (3*final_adp + final_att)/4);
+            }else{
+                agility = Math.floor(110 + (final_att + 3*final_adp - 120)/28);
+            }
+
+        }
+        function attunementslot(stat){
+            if(stat < 10){
+                return 0;
+            }else if(stat < 13){
+                return 1;
+            }else if(stat < 16){
+                return 2;
+            }else if(stat < 20){
+                return 3;
+            }else if(stat < 25){
+                return 4;
+            }else if(stat < 30){
+                return 5;
+            }else if(stat < 40){
+                return 6;
+            }else if(stat < 50){
+                return 7;
+            }else{
+                console.log("what");
+                return 0;
+            }
+        }
+        function toggleagility(){
+            if(document.getElementById("showagility").style.display == ""){
+                document.getElementById("showagility").style.display = "inline-block";
+                document.getElementById("agilitybutton").innerHTML = "Hide Agility Info";
+            }else{
+                document.getElementById("showagility").style.display = null;
+                document.getElementById("agilitybutton").innerHTML = "Reveal Agility Info";
+            }
+        }
+        function toggleslot(){
+            if(document.getElementById("showslot").style.display == ""){
+                document.getElementById("showslot").style.display = "inline-block";
+                document.getElementById("slotbutton").innerHTML = "Hide Spell Slot Info";
+            }else{
+                document.getElementById("showslot").style.display = null;
+                document.getElementById("slotbutton").innerHTML = "Reveal Spell Slot Info";
+            }
+        }
+        function chimecalculate(){
+            let total_fth = fth + helm_fth + arm_fth + hand_fth + ring1_fth + ring2_fth + ring3_fth + ring4_fth + balm_fth;
+            if(total_fth < 7){
+                hand_fth = 8;
+            }else if(total_fth < 16){
+                hand_fth = 7;
+            }else if(total_fth < 25){
+                hand_fth = 6;
+            }else if(total_fth < 34){
+                hand_fth = 5;
+            }else if(total_fth < 43){
+                hand_fth = 4;
+            }else if(total_fth < 52){
+                hand_fth = 3;
+            }else{
+                hand_fth = 2;
+            }
+        }
     </script>
 
 </body>
