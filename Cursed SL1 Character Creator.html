@@ -1,4 +1,8 @@
 <!DOCTYPE HTML>
+<!--To Do List-->
+<!--Remove Sl1 restriction on character creator-->
+<!--Add max level button-->
+<!--Add main-hand equipment slot for Chime of Screams exlusively-->
 <html>
 <head>
     <title>Cursed SL1 Character Creator</title>
@@ -71,21 +75,21 @@
             width: 100%;
             text-align: center;
         }
-        #showagility, #showslot {
+        #showagility, #showslot, #showchime {
             display: none;
         }
         .agility_info {
-            width: 50%;
+            width: 33%;
             text-align: center;
             float: left;
         }
         .attunement_info{
-            width:50%;
+            width:34%;
             text-align: center;
-            float: right;
+            float: left;
         }
         .chime_info {
-            width:34%;
+            width:33%;
             text-align: center;
             float: right;
         }
@@ -190,7 +194,7 @@
                 <option value="shield">Vessel Shield(+4 Str/Dex,+ 1Int/Fth/Vig/End/Adp)</option>
                 <option  value="laddle">Laddle(+2 Adp,+1 End/Vit,-1 Dex)</option>
                 <option  value="hook">Work Hook(+5 Dex,-3 Adp)</option>
-                <option  value="deargod">Chime of Screams(+X Fth, Calculation not supported)</option> // faith boost needs testing
+                <option  value="deargod">Chime of Screams(+X Fth)</option> // faith boost needs testing
             </select></p>
             <p><select onchange="calculatering1()" id="selectring1">
                 <option id="maidenless1" value="maidenless">None</option>
@@ -401,6 +405,54 @@
         </table>
         </div>
     </div>
+    <div class="chime_info">
+        <p class="height"><button id="chimebutton" onclick="togglechime()">Reveal Chime Info</button></p>
+        <div id="showchime">
+            <h2>Chime of Screams Information</h2>
+            <table>
+                <tr>
+                    <th>Fth Stat</th>
+                    <th>Fth Increase</th>
+                </tr>
+                <tr>
+                    <td>1-6</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>7-15</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>16-24</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>25-33</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>34-42</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>43-51</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>52-97</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>98</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>99</td>
+                    <td>0</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 
     <script>
         let vig = 1;
@@ -495,6 +547,7 @@
                         document.getElementById("fth1").innerHTML = fth;
                         level++;
                         document.getElementById("level1").innerHTML = level;
+                        checkchime();
                         break;
                 }
             }
@@ -555,6 +608,7 @@
                         document.getElementById("fth1").innerHTML = fth;
                         level--;
                         document.getElementById("level1").innerHTML = level;
+                        checkchime();
                         break;
                     
                 }
@@ -581,6 +635,7 @@
             document.getElementById("int1").innerHTML = int;
             document.getElementById("fth1").innerHTML = fth;
             document.getElementById("level1").innerHTML = level;
+            checkchime();
         }
         function levelone(){
             vig = 6;
@@ -603,6 +658,7 @@
             document.getElementById("int1").innerHTML = int;
             document.getElementById("fth1").innerHTML = fth;
             document.getElementById("level1").innerHTML = level;
+            checkchime();
         }
         // Headpiece affect all stats except attunement
         let helm_vig = 0;
@@ -859,17 +915,20 @@
                 case "nohead?": 
                     resethelm();
                     document.getElementById("helm").innerHTML = "";
+                    checkchime();
                     break;
                 case "cale": 
                     resethelm();
                     helm_dex = 2;
                     helm_end = 1;
                     document.getElementById("helm").innerHTML = "+1 End, +2 Dex";
+                    checkchime();
                     break;
                 case "mad": 
                     resethelm();
                     helm_adp = 2;
                     document.getElementById("helm").innerHTML = "+2 Adp";
+                    checkchime();
                     break;
                 case "sunken": 
                     resethelm();
@@ -881,71 +940,84 @@
                     helm_int = 1;
                     helm_fth = 1;
                     document.getElementById("helm").innerHTML = "-1 Vig, +1 End, -1 Vit, +1 Str, +1 Dex, +1 Int, +1 Fth";
+                    checkchime();
                     break;
                 case "vel": 
                     resethelm();
                     helm_end = 1;
                     helm_vit = 1;
                     document.getElementById("helm").innerHTML = "+1 End, +1 Vit";
+                    checkchime();
                     break;
                 case "ven": 
                     resethelm();
                     helm_vit = 2;
                     document.getElementById("helm").innerHTML = "+2 Vit";
+                    checkchime();
                     break;
                 case "slot": 
                     resethelm();
                     helm_slot = 1;
                     document.getElementById("helm").innerHTML = "+1 Attunement Slot";
+                    checkchime();
                     break;
                 case "king": 
                     resethelm();
                     helm_int = 3;
                     helm_fth = 3;
                     document.getElementById("helm").innerHTML = "+3 Int, +3 Fth";
+                    checkchime();
                     break;
                 case "hood2": 
                     resethelm();
                     helm_int = 2;
                     helm_fth = 2;
                     document.getElementById("helm").innerHTML = "+2 Int, +2 Fth";
+                    checkchime();
                     break;
                 case "hood1": 
                     resethelm();
                     helm_int = 1;
                     helm_fth = 1;
                     document.getElementById("helm").innerHTML = "+1 Int, +1 Fth";
+                    checkchime();
                     break;
                 case "hat3": 
                     resethelm();
                     helm_int = 3;
                     document.getElementById("helm").innerHTML = "+3 Int";
+                    checkchime();
                     break;
                 case "hat2": 
                     resethelm();
                     helm_int = 2;
                     document.getElementById("helm").innerHTML = "+2 Int";
+                    checkchime();
                     break;
                 case "hat1": 
                     resethelm();
                     helm_int = 1;
                     document.getElementById("helm").innerHTML = "+1 Int";
+                    checkchime();
                     break;
                 case "phat": 
                     resethelm();
                     helm_int = -1;
                     helm_fth = 2;
                     document.getElementById("helm").innerHTML = "-1 Int, +2 Fth";
+                    checkchime();
                     break;
                 case "headpiece2": 
                     resethelm();
                     helm_fth = 2;
                     document.getElementById("helm").innerHTML = "+2 Fth";
+                    checkchime();
                     break;
                 case "headpiece1": 
                     resethelm();
                     helm_fth = 1;
                     document.getElementById("helm").innerHTML = "+1 Fth";
+                    checkchime();
                     break;
             }
         }
@@ -970,17 +1042,20 @@
                 case "barefist": 
                     resetarm();
                     document.getElementById("arm").innerHTML = "";
+                    checkchime();
                     break;
                 case "parm": 
                     resetarm();
                     arm_adp = 2;
                     arm_int = -1;
                     document.getElementById("arm").innerHTML = "+2 Adp, -1 Int";
+                    checkchime();
                     break;
                 case "cuff": 
                     resetarm();
                     arm_fth = 1;
                     document.getElementById("arm").innerHTML = "+1 Fth";
+                    checkchime();
                     break;
                 default: 
                     console.log("arm");
@@ -1043,7 +1118,7 @@
                     break;
                 case "deargod": 
                     resethand();
-                    document.getElementById("hand").innerHTML = "";
+                    checkchime();
                     break;
                 default: 
                     console.log("hand");
@@ -1056,54 +1131,63 @@
                     resetring1();
                     document.getElementById("ring1").innerHTML = "";
                     disablering();
+                    checkchime();
                     break;
                 case "strength":
                     resetring1();
                     ring1_str = 5;
                     document.getElementById("ring1").innerHTML = "+5 Str";
                     disablering();
+                    checkchime();
                     break;
                 case "dexterity": 
                     resetring1();
                     ring1_dex = 5;
                     document.getElementById("ring1").innerHTML = "+5 Dex";
                     disablering();
+                    checkchime();
                     break;
                 case "simple": 
                     resetring1();
                     ring1_adp = 5;
                     document.getElementById("ring1").innerHTML = "+5 Adp";
                     disablering();
+                    checkchime();
                     break;
                 case "knowledge":
                     resetring1();
                     ring1_int = 5;
                     document.getElementById("ring1").innerHTML = "+5 Int"
                     disablering();
+                    checkchime();
                     break;
                 case "prayer": 
                     resetring1();
                     ring1_fth = 5;
                     document.getElementById("ring1").innerHTML = "+5 Fth";
                     disablering();
+                    checkchime();
                     break;
                 case "south1":
                     resetring1();
                     ring1_slot = 1;
                     document.getElementById("ring1").innerHTML = "+1 Attunement Slot";
                     disablering();
+                    checkchime();
                     break;
                 case "south2": 
                     resetring1();
                     ring1_slot = 2;
                     document.getElementById("ring1").innerHTML = "+2 Attunement Slot";
                     disablering();
+                    checkchime();
                     break;
                 case "south3": 
                     resetring1();
                     ring1_slot = 3;
                     document.getElementById("ring1").innerHTML = "+3 Attunement Slot";
                     disablering();
+                    checkchime();
                     break;
                 default: 
                     console.log("ring1");
@@ -1116,54 +1200,63 @@
                     resetring2();
                     document.getElementById("ring2").innerHTML = "";
                     disablering();
+                    checkchime();
                     break;
                 case "strength":
                     resetring2();
                     ring2_str = 5;
                     document.getElementById("ring2").innerHTML = "+5 Str";
                     disablering();
+                    checkchime();
                     break;
                 case "dexterity": 
                     resetring2();
                     ring2_dex = 5;
                     document.getElementById("ring2").innerHTML = "+5 Dex";
                     disablering();
+                    checkchime();
                     break;
                 case "simple": 
                     resetring2();
                     ring2_adp = 5;
                     document.getElementById("ring2").innerHTML = "+5 Adp";
                     disablering();
+                    checkchime();
                     break;
                 case "knowledge":
                     resetring2();
                     ring2_int = 5;
                     document.getElementById("ring2").innerHTML = "+5 Int"
                     disablering();
+                    checkchime();
                     break;
                 case "prayer": 
                     resetring2();
                     ring2_fth = 5;
                     document.getElementById("ring2").innerHTML = "+5 Fth";
                     disablering();
+                    checkchime();
                     break;
                 case "south1":
                     resetring2();
                     ring2_slot = 1;
                     document.getElementById("ring2").innerHTML = "+1 Attunement Slot";
                     disablering();
+                    checkchime();
                     break;
                 case "south2": 
                     resetring2();
                     ring2_slot = 2;
                     document.getElementById("ring2").innerHTML = "+2 Attunement Slot";
                     disablering();
+                    checkchime();
                     break;
                 case "south3": 
                     resetring2();
                     ring2_slot = 3;
                     document.getElementById("ring2").innerHTML = "+3 Attunement Slot";
                     disablering();
+                    checkchime();
                     break;
                 default: 
                     console.log("ring2");
@@ -1176,54 +1269,63 @@
                     resetring3();
                     document.getElementById("ring3").innerHTML = "";
                     disablering();
+                    checkchime();
                     break;
                 case "strength":
                     resetring3();
                     ring3_str = 5;
                     document.getElementById("ring3").innerHTML = "+5 Str";
                     disablering();
+                    checkchime();
                     break;
                 case "dexterity": 
                     resetring3();
                     ring3_dex = 5;
                     document.getElementById("ring3").innerHTML = "+5 Dex";
                     disablering();
+                    checkchime();
                     break;
                 case "simple": 
                     resetring3();
                     ring3_adp = 5;
                     document.getElementById("ring3").innerHTML = "+5 Adp";
                     disablering();
+                    checkchime();
                     break;
                 case "knowledge":
                     resetring3();
                     ring3_int = 5;
                     document.getElementById("ring3").innerHTML = "+5 Int"
                     disablering();
+                    checkchime();
                     break;
                 case "prayer": 
                     resetring3();
                     ring3_fth = 5;
                     document.getElementById("ring3").innerHTML = "+5 Fth";
                     disablering();
+                    checkchime();
                     break;
                 case "south1":
                     resetring3();
                     ring3_slot = 1;
                     document.getElementById("ring3").innerHTML = "+1 Attunement Slot";
                     disablering();
+                    checkchime();
                     break;
                 case "south2": 
                     resetring3();
                     ring3_slot = 2;
                     document.getElementById("ring3").innerHTML = "+2 Attunement Slot";
                     disablering();
+                    checkchime();
                     break;
                 case "south3": 
                     resetring3();
                     ring3_slot = 3;
                     document.getElementById("ring3").innerHTML = "+3 Attunement Slot";
                     disablering();
+                    checkchime();
                     break;
                 default: 
                     console.log("ring3");
@@ -1236,54 +1338,63 @@
                     resetring4();
                     document.getElementById("ring4").innerHTML = "";
                     disablering();
+                    checkchime();
                     break;
                 case "strength":
                     resetring4();
                     ring4_str = 5;
                     document.getElementById("ring4").innerHTML = "+5 Str";
                     disablering();
+                    checkchime();
                     break;
                 case "dexterity": 
                     resetring4();
                     ring4_dex = 5;
                     document.getElementById("ring4").innerHTML = "+5 Dex";
                     disablering();
+                    checkchime();
                     break;
                 case "simple": 
                     resetring4();
                     ring4_adp = 5;
                     document.getElementById("ring4").innerHTML = "+5 Adp";
                     disablering();
+                    checkchime();
                     break;
                 case "knowledge":
                     resetring4();
                     ring4_int = 5;
                     document.getElementById("ring4").innerHTML = "+5 Int"
                     disablering();
+                    checkchime();
                     break;
                 case "prayer": 
                     resetring4();
                     ring4_fth = 5;
                     document.getElementById("ring4").innerHTML = "+5 Fth";
                     disablering();
+                    checkchime();
                     break;
                 case "south1":
                     resetring4();
                     ring4_slot = 1;
                     document.getElementById("ring4").innerHTML = "+1 Attunement Slot";
                     disablering();
+                    checkchime();
                     break;
                 case "south2": 
                     resetring4();
                     ring4_slot = 2;
                     document.getElementById("ring4").innerHTML = "+2 Attunement Slot";
                     disablering();
+                    checkchime();
                     break;
                 case "south3": 
                     resetring4();
                     ring4_slot = 3;
                     document.getElementById("ring4").innerHTML = "+3 Attunement Slot";
                     disablering();
+                    checkchime();
                     break;
                 default: 
                     console.log("ring4");
@@ -1295,26 +1406,31 @@
                 case "drugfree": 
                     resetbalm();
                     document.getElementById("balm").innerHTML = "";
+                    checkchime();
                     break;
                 case "steroids": 
                     resetbalm();
                     balm_str = 5;
                     document.getElementById("balm").innerHTML = "+5 Str";
+                    checkchime();
                     break;
                 case "coffee": 
                     resetbalm();
                     balm_dex = 5;
                     document.getElementById("balm").innerHTML = "+5 Dex";
+                    checkchime();
                     break;
                 case "adderall": 
                     resetbalm();
                     balm_int = 5;
                     document.getElementById("balm").innerHTML = "+5 Int";
+                    checkchime();
                     break;
                 case "shrooms": 
                     resetbalm();
                     balm_fth = 5;
                     document.getElementById("balm").innerHTML = "+5 Fth";
+                    checkchime();
                     break;
                 default: 
                     console.log("drug");
@@ -1425,19 +1541,33 @@
                 document.getElementById("slotbutton").innerHTML = "Reveal Spell Slot Info";
             }
         }
-        function chimecalculate(){
-            let total_fth = fth + helm_fth + arm_fth + hand_fth + ring1_fth + ring2_fth + ring3_fth + ring4_fth + balm_fth;
-            if(total_fth < 7){
+        function togglechime(){
+            if(document.getElementById("showchime").style.display == ""){
+                document.getElementById("showchime").style.display = "inline-block";
+                document.getElementById("chimebutton").innerHTML = "Hide Chime Info";
+            }else{
+                document.getElementById("showchime").style.display = null;
+                document.getElementById("chimebutton").innerHTML = "Reveal Chime Info";
+            }
+        }
+        function checkchime(){
+            if(document.getElementById("selecthand").value == "deargod"){
+                chimecalculate(fth + helm_fth + arm_fth + ring1_fth + ring2_fth + ring3_fth + ring4_fth + balm_fth);
+                document.getElementById("hand").innerHTML = "+" + hand_fth + " Fth";
+            }
+        }
+        function chimecalculate(stat){
+            if(stat < 7){
                 hand_fth = 8;
-            }else if(total_fth < 16){
+            }else if(stat < 16){
                 hand_fth = 7;
-            }else if(total_fth < 25){
+            }else if(stat < 25){
                 hand_fth = 6;
-            }else if(total_fth < 34){
+            }else if(stat < 34){
                 hand_fth = 5;
-            }else if(total_fth < 43){
+            }else if(stat < 43){
                 hand_fth = 4;
-            }else if(total_fth < 52){
+            }else if(stat < 52){
                 hand_fth = 3;
             }else{
                 hand_fth = 2;
