@@ -1,8 +1,5 @@
 <!DOCTYPE HTML>
 <!--To Do List-->
-<!--Remove Sl1 restriction on character creator-->
-<!--Add max level button-->
-<!--Add reset equipment button-->
 <html>
 <head>
     <title>Cursed SL1 Character Creator</title>
@@ -15,7 +12,7 @@
             display: inline-block;
         }
         h1 {
-            text-align:center;
+            text-align: center;
         }
         table {
             border: 1px solid black;
@@ -122,6 +119,7 @@
         <p class="height"><button onclick="decreament('fth1')">-</button><span id="fth1">1</span><button onclick="increament('fth1')">+</button></p>
         <p class="height"><button onclick="reset()">Reset</button></p>
         <p class="height"><button onclick="levelone()">SL1</button></p>
+        <p class="height"><button onclick="maxlevel()">Max</button></p>
         </div>
 
     </div>
@@ -247,6 +245,7 @@
                 <option value="adderall">Blackweed Balm(+5 Int)</option>
                 <option value="shrooms">Goldenfruit Balm(+5 Fth)</option>
             </select></p>
+            <p><button onclick="resetequipment()" style="width:90%">Reset Equipment</button></p>
         </div>
         <div class="leftnt">
             <h3>Stat Bonus</h3>
@@ -488,11 +487,8 @@
                     return fth;
             }
         }
-        function sum(){ // tested, works
-            return vig+end+vit+att+str+dex+adp+int+fth;
-        }
         function increament(stat){ //Tested, works
-            if(sum() < 54){
+            if(checkstat(stat) < 99){
                 switch(stat){
                     case "vig1":
                         vig++;
@@ -659,6 +655,30 @@
             document.getElementById("fth1").innerHTML = fth;
             document.getElementById("level1").innerHTML = level;
             checkchime();
+        }
+        function maxlevel(){
+            vig = 99;
+            end = 99;
+            vit = 99;
+            att = 99;
+            str = 99;
+            dex = 99;
+            adp = 99;
+            int = 99;
+            fth = 99;
+            level = 838;
+            document.getElementById("vig1").innerHTML = vig;
+            document.getElementById("end1").innerHTML = end;
+            document.getElementById("vit1").innerHTML = vit;
+            document.getElementById("att1").innerHTML = att;
+            document.getElementById("str1").innerHTML = str;
+            document.getElementById("dex1").innerHTML = dex;
+            document.getElementById("adp1").innerHTML = adp;
+            document.getElementById("int1").innerHTML = int;
+            document.getElementById("fth1").innerHTML = fth;
+            document.getElementById("level1").innerHTML = level;
+            checkchime();
+
         }
         // Headpiece affect all stats except attunement
         let helm_vig = 0;
@@ -908,7 +928,51 @@
                 }
             }
         }
+        function resetequipment(){
+            document.getElementById("selecthead").value = "nohead?";
+            resethelm();
+            document.getElementById("helm").innerHTML = "";
 
+            document.getElementById("selectchest").value = "barechest";
+            chest_adp = 0;
+            chest_int = 0;
+            document.getElementById("chest").innerHTML = "";
+
+            document.getElementById("selectarm").value = "barefist";
+            resetarm();
+            document.getElementById("arm").innerHTML = "";
+
+            document.getElementById("selectleg").value = "unshavenlegs";
+            resetleg();
+            document.getElementById("leg").innerHTML = "";
+
+            document.getElementById("selecthand").value = "hegothands";
+            resethand();
+            document.getElementById("hand").innerHTML = "";
+
+            document.getElementById("selectring1").value = "maidenless";
+            resetring1();
+            document.getElementById("ring1").innerHTML = "";
+
+            document.getElementById("selectring2").value = "maidenless";
+            resetring2();
+            document.getElementById("ring2").innerHTML = "";
+
+            document.getElementById("selectring3").value = "maidenless";
+            resetring3();
+            document.getElementById("ring3").innerHTML = "";
+
+            document.getElementById("selectring4").value = "maidenless";
+            resetring4();
+            document.getElementById("ring4").innerHTML = "";
+
+            document.getElementById("selectbalm").value = "drugfree";
+            resetbalm();
+            document.getElementById("balm").innerHTML = "";
+
+            disablering();
+            chimecalculate();
+        }
 
         function calculatehead(){
             switch(document.getElementById("selecthead").value){
@@ -1459,22 +1523,41 @@
             final_int = int + helm_int + chest_int + arm_int + leg_int + hand_int + ring1_int + ring2_int + ring3_int + ring4_int + balm_int;
             final_fth = fth + helm_fth + arm_fth + hand_fth + ring1_fth + ring2_fth + ring3_fth + ring4_fth + balm_fth;
             final_slot = attunementslot(att) + helm_slot + ring1_slot + ring2_slot + ring3_slot + ring4_slot;
-            calculateagility();
             if(final_vig <= 0){
                 final_vig = 1;
+            }else if(final_vig > 99){
+                final_vig = 99;
+            }
+            if(final_end > 99){
+                final_end = 99;
             }
             if(final_vit <= 0){
                 final_vit = 1;
+            }else if(final_vit > 99){
+                final_vit = 99;
+            }
+            if(final_str > 99){
+                final_str = 99;
             }
             if(final_dex <= 0){
                 final_dex = 1;
+            }else if(final_dex > 99){
+                final_dex = 99;
             }
             if(final_adp <= 0){
                 final_adp = 1;
+            }else if(final_adp > 99){
+                final_adp = 99;
             }
             if(final_int <= 0){
                 final_int = 1;
+            }else if(final_int > 99){
+                final_int = 99;
             }
+            if(final_fth > 99){
+                final_fth = 99;
+            }
+            calculateagility();
             if(agility < 85){
                 agility = 85;
             }
@@ -1518,6 +1601,12 @@
                 return 6;
             }else if(stat < 50){
                 return 7;
+            }else if(stat < 60){
+                return 8;
+            }else if(stat < 75){
+                return 9;
+            }else if(stat >= 75){
+                return 10;
             }else{
                 console.log("what");
                 return 0;
@@ -1569,8 +1658,12 @@
                 hand_fth = 4;
             }else if(stat < 52){
                 hand_fth = 3;
-            }else{
+            }else if(stat < 98){
                 hand_fth = 2;
+            }else if(stat < 99){
+                hand_fth = 1;
+            }else if(stat == 99){
+                hand_fth = 0;
             }
         }
     </script>
