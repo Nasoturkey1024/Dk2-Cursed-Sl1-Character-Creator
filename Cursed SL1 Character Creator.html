@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
 <!--To Do List-->
+<!--Check Numbers for Chaos Hood and Chime in-game-->
+<!--Possibly Add Equipment Load-->
 <html>
 <head>
     <title>Cursed SL1 Character Creator</title>
@@ -151,13 +153,13 @@
                 
                 <option value="slot">Black Witch Hat(+1 Slot)</option>
                 <option value="king">King's Crown(+3 Int/Fth)</option>
-                <option value="hood2">Black Hood(+2 Int/Fth)</option>
+                <option value="shood">Black Hood(+2 Int/Fth, +11% Speed)</option>
                 <option value=hood1>Leydia Black Hood(+1 Int/Fth)</option>
                 <option value="hood1">Dark Mask(+1 Int/Fth)</option>
                 <option value="hood1">Dragon Sage Hood(+1 Int/Fth)</option>
                 <option value="hood1">Hexer's Hood(+1 Int/Fth)</option>
 
-                <option value="hat3">Chaos Hood(+3 Int)</option>
+                <option value="shat">Chaos Hood(+3 Int, +5.2% Speed)</option>
                 <option value="hat3">Desert Sorceress Hood(+3 Int)</option>
                 <option value="hat2">Warlock Mask(+2 Int)</option>
                 <option value="hat2">Moon Hat(+2 Int)</option>
@@ -176,16 +178,19 @@
             <p><select onchange="calculatechest()" id="selectchest">
                 <option value="barechest">None</option>
                 <option value="pchest">Peasant Attire(+2 Adp, -1 Int)</option>
+                <option value="schest">Lion Mage Robe(+5.2% Speed)</option>
             </select></p>
             <p><select onchange="calculatearm()" id="selectarm">
                 <option value="barefist">None</option>
                 <option value="parm">Peasant Long Gloves(+2 Adp, -1 Int)</option>
                 <option value="cuff">Agdayne's Cuffs(+1 Fth)</option>
+                <option value="scuff">Lion Mage Cuffs(+5.2% Speed)</option>
             </select></p>
-            <p><select onclick="calculateleg()" id="selectleg">
+            <p><select onchange="calculateleg()" id="selectleg">
                 <option value="unshavenlegs">None</option>
                 <option value="pleg">Peasant Trousers(+2 Adp,-1 Int)</option>
                 <option value="pain">Flower Skirt(+2 Vig,+1 End)</option>
+                <option value="sleg">Lion Mage Skirt(+5.2% Speed)</option>
             </select></p>
             <p><select onchange="calculatehand()" id="selecthand">
                 <option value="hegothands">None</option>
@@ -204,6 +209,9 @@
                 <option id="south1+0" value="south1">Southern Ritual Band(+1 Slot)</option>
                 <option id="south1+1" value="south2">Southern Ritual Band +1(+2 Slot)</option>
                 <option id="south1+2" value="south3">Southern Ritual Band +2(+3 Slot)</option>
+                <option id="speed1+0" value="speed1">Clear Bluestone Ring(+25% Speed)</option>
+                <option id="speed1+1" value="speed2">Clear Bluestone Ring +1(+54% Speed)</option>
+                <option id="speed1+2" value="speed3">Clear Bluestone Ring +2(+67% Speed)</option>
             </select></p>
             <p><select onchange="calculatering2()" id="selectring2">
                 <option id="maidenless2" value="maidenless">None</option>
@@ -215,6 +223,9 @@
                 <option id="south2+0" value="south1">Southern Ritual Band(+1 Slot)</option>
                 <option id="south2+1" value="south2">Southern Ritual Band +1(+2 Slot)</option>
                 <option id="south2+2" value="south3">Southern Ritual Band +2(+3 Slot)</option>
+                <option id="speed2+0" value="speed1">Clear Bluestone Ring(+25% Speed)</option>
+                <option id="speed2+1" value="speed2">Clear Bluestone Ring +1(+54% Speed)</option>
+                <option id="speed2+2" value="speed3">Clear Bluestone Ring +2(+67% Speed)</option>
             </select></p>
             <p><select onchange="calculatering3()" id="selectring3">
                 <option id="maidenless3" value="maidenless">None</option>
@@ -226,6 +237,9 @@
                 <option id="south3+0" value="south1">Southern Ritual Band(+1 Slot)</option>
                 <option id="south3+1" value="south2">Southern Ritual Band +1(+2 Slot)</option>
                 <option id="south3+2" value="south3">Southern Ritual Band +2(+3 Slot)</option>
+                <option id="speed3+0" value="speed1">Clear Bluestone Ring(+25% Speed)</option>
+                <option id="speed3+1" value="speed2">Clear Bluestone Ring +1(+54% Speed)</option>
+                <option id="speed3+2" value="speed3">Clear Bluestone Ring +2(+67% Speed)</option>
             </select></p>
             <p><select onchange="calculatering4()" id="selectring4">
                 <option id="maidenless4" value="maidenless">None</option>
@@ -237,6 +251,9 @@
                 <option id="south4+0" value="south1">Southern Ritual Band(+1 Slot)</option>
                 <option id="south4+1" value="south2">Southern Ritual Band +1(+2 Slot)</option>
                 <option id="south4+2" value="south3">Southern Ritual Band +2(+3 Slot)</option>
+                <option id="speed4+0" value="speed1">Clear Bluestone Ring(+25% Speed)</option>
+                <option id="speed4+1" value="speed2">Clear Bluestone Ring +1(+54 Speed)</option>
+                <option id="speed4+2" value="speed3">Clear Bluestone Ring +2(+67 Speed)</option>
             </select></p>
             <p><select onchange="calculatebalm()" id="selectbalm">
                 <option value="drugfree">None</option>
@@ -291,10 +308,12 @@
         <div class="lefter" style="width:10%">
             <p class="height">Spell Slots:</p>
             <p class="height">Agility:</p>
+            <p class="height">Casting Speed:</p>
         </div>
         <div class="else" style="width:5%">
             <p id="finale_slot" class="height"></p>
             <p id="finale_agility" class="height"></p>
+            <p id="finale_speed" class="height"></p>
         </div>
     </div>
     <div class="button">
@@ -690,18 +709,22 @@
         let helm_int = 0;
         let helm_fth = 0;
         let helm_slot = 0;
+        let helm_speed = 100;
 
         let chest_adp = 0;
-        let chest_int = 0; // only peasant attire changes stats
+        let chest_int = 0; 
+        let chest_speed = 100;
 
         let arm_adp = 0;
         let arm_int = 0;
         let arm_fth = 0;
+        let arm_speed = 100;
 
         let leg_vig = 0;
         let leg_end = 0;
         let leg_adp = 0;
         let leg_int = 0;
+        let leg_speed = 100;
 
         let hand_vig = 0;
         let hand_end = 0;
@@ -718,6 +741,7 @@
         let ring1_int = 0;
         let ring1_fth = 0;
         let ring1_slot = 0;
+        let ring1_speed = 100;
 
         let ring2_str = 0;
         let ring2_dex = 0;
@@ -725,6 +749,7 @@
         let ring2_int = 0;
         let ring2_fth = 0;
         let ring2_slot = 0;
+        let ring2_speed = 100;
 
         let ring3_str = 0;
         let ring3_dex = 0;
@@ -732,6 +757,7 @@
         let ring3_int = 0;
         let ring3_fth = 0;
         let ring3_slot = 0;
+        let ring3_speed = 100;
 
         let ring4_str = 0;
         let ring4_dex = 0;
@@ -739,6 +765,7 @@
         let ring4_int = 0;
         let ring4_fth = 0;
         let ring4_slot = 0;
+        let ring4_speed = 100;
 
         let balm_str = 0;
         let balm_dex = 0;
@@ -755,17 +782,25 @@
             helm_int = 0;
             helm_fth = 0;
             helm_slot = 0;
+            helm_speed = 100;
+        }
+        function resetchest(){
+            chest_adp = 0;
+            chest_int = 0;
+            chest_speed = 100;
         }
         function resetarm(){
             arm_adp = 0;
             arm_int = 0;
             arm_fth = 0;
+            arm_speed = 100;
         }
         function resetleg(){
             leg_vig = 0;
             leg_end = 0;
             leg_adp = 0;
             leg_int = 0;
+            leg_speed = 100;
         }
         function resethand(){
             hand_vig = 0;
@@ -784,6 +819,7 @@
             ring1_int = 0;
             ring1_fth = 0;
             ring1_slot = 0;
+            ring1_speed = 100;
         }
         function resetring2(){
             ring2_str = 0;
@@ -792,6 +828,7 @@
             ring2_int = 0;
             ring2_fth = 0;
             ring2_slot = 0;
+            ring2_speed = 100;
         }
         function resetring3(){
             ring3_str = 0;
@@ -800,6 +837,7 @@
             ring3_int = 0;
             ring3_fth = 0;
             ring3_slot = 0;
+            ring3_speed = 100;
         }
         function resetring4(){
             ring4_str = 0;
@@ -808,6 +846,7 @@
             ring4_int = 0;
             ring4_fth = 0;
             ring4_slot = 0;
+            ring4_speed = 100;
         }
         function resetbalm(){
             balm_str = 0;
@@ -927,6 +966,62 @@
                     document.getElementById("south3+2").disabled = true;
                 }
             }
+            if(ring1_speed + ring2_speed + ring3_speed + ring4_speed <= 400){
+                document.getElementById("speed1+0").disabled = false;
+                document.getElementById("speed1+1").disabled = false;
+                document.getElementById("speed1+2").disabled = false;
+                document.getElementById("speed2+0").disabled = false;
+                document.getElementById("speed2+1").disabled = false;
+                document.getElementById("speed2+2").disabled = false;
+                document.getElementById("speed3+0").disabled = false;
+                document.getElementById("speed3+1").disabled = false;
+                document.getElementById("speed3+2").disabled = false;
+                document.getElementById("speed4+0").disabled = false;
+                document.getElementById("speed4+1").disabled = false;
+                document.getElementById("speed4+2").disabled = false;
+            }else{
+                if(ring1_speed > 100){
+                    document.getElementById("speed2+0").disabled = true;
+                    document.getElementById("speed2+1").disabled = true;
+                    document.getElementById("speed2+2").disabled = true;
+                    document.getElementById("speed3+0").disabled = true;
+                    document.getElementById("speed3+1").disabled = true;
+                    document.getElementById("speed3+2").disabled = true;
+                    document.getElementById("speed4+0").disabled = true;
+                    document.getElementById("speed4+1").disabled = true;
+                    document.getElementById("speed4+2").disabled = true;
+                }else if(ring2_speed > 100){
+                    document.getElementById("speed1+0").disabled = true;
+                    document.getElementById("speed1+1").disabled = true;
+                    document.getElementById("speed1+2").disabled = true;
+                    document.getElementById("speed3+0").disabled = true;
+                    document.getElementById("speed3+1").disabled = true;
+                    document.getElementById("speed3+2").disabled = true;
+                    document.getElementById("speed4+0").disabled = true;
+                    document.getElementById("speed4+1").disabled = true;
+                    document.getElementById("speed4+2").disabled = true;
+                }else if(ring3_speed > 100){
+                    document.getElementById("speed1+0").disabled = true;
+                    document.getElementById("speed1+1").disabled = true;
+                    document.getElementById("speed1+2").disabled = true;
+                    document.getElementById("speed2+0").disabled = true;
+                    document.getElementById("speed2+1").disabled = true;
+                    document.getElementById("speed2+2").disabled = true;
+                    document.getElementById("speed4+0").disabled = true;
+                    document.getElementById("speed4+1").disabled = true;
+                    document.getElementById("speed4+2").disabled = true;
+                }else{
+                    document.getElementById("speed1+0").disabled = true;
+                    document.getElementById("speed1+1").disabled = true;
+                    document.getElementById("speed1+2").disabled = true;
+                    document.getElementById("speed2+0").disabled = true;
+                    document.getElementById("speed2+1").disabled = true;
+                    document.getElementById("speed2+2").disabled = true;
+                    document.getElementById("speed3+0").disabled = true;
+                    document.getElementById("speed3+1").disabled = true;
+                    document.getElementById("speed3+2").disabled = true;
+                }
+            }
         }
         function resetequipment(){
             document.getElementById("selecthead").value = "nohead?";
@@ -934,8 +1029,7 @@
             document.getElementById("helm").innerHTML = "";
 
             document.getElementById("selectchest").value = "barechest";
-            chest_adp = 0;
-            chest_int = 0;
+            resetchest();
             document.getElementById("chest").innerHTML = "";
 
             document.getElementById("selectarm").value = "barefist";
@@ -1025,6 +1119,14 @@
                     document.getElementById("helm").innerHTML = "+1 Attunement Slot";
                     checkchime();
                     break;
+                case "shood":
+                    resethelm();
+                    helm_int = 2;
+                    helm_fth = 2;
+                    helm_speed = 111;
+                    document.getElementById("helm").innerHTML = "+2 Int, +2 Fth, +11% Casting Speed";
+                    checkchime();
+                    break;
                 case "king": 
                     resethelm();
                     helm_int = 3;
@@ -1045,6 +1147,12 @@
                     helm_fth = 1;
                     document.getElementById("helm").innerHTML = "+1 Int, +1 Fth";
                     checkchime();
+                    break;
+                case "shat": 
+                    resethelm();
+                    helm_int = 3;
+                    helm_speed = 105.2;
+                    document.getElementById("helm").innerHTML = "+3 Int, +5.2% Casting Speed";
                     break;
                 case "hat3": 
                     resethelm();
@@ -1088,14 +1196,20 @@
         function calculatechest(){
             switch(document.getElementById("selectchest").value){
                 case "barechest": 
-                    chest_adp = 0;
-                    chest_int = 0;
+                    resetchest();
                     document.getElementById("chest").innerHTML = "";
                     break;
-                case "pchest": 
+                case "pchest":
+                    resetchest(); 
                     chest_adp = 2;
                     chest_int = -1;
                     document.getElementById("chest").innerHTML = "+2 Adp, -1 Int";
+                    break;
+                case "schest": 
+                    resetchest();
+                    chest_speed = 105.2;
+                    document.getElementById("chest").innerHTML = "+5.2% Casting Speed";
+                    break;
                 default: 
                     console.log("chest");
                     break;
@@ -1121,6 +1235,12 @@
                     document.getElementById("arm").innerHTML = "+1 Fth";
                     checkchime();
                     break;
+                case "scuff": 
+                    resetarm();
+                    arm_speed = 105.2;
+                    document.getElementById("arm").innerHTML = "+5.2% Casting Speed";
+                    checkchime();
+                    break;
                 default: 
                     console.log("arm");
                     break;
@@ -1143,6 +1263,11 @@
                     leg_vig = 2;
                     leg_end = 1;
                     document.getElementById("leg").innerHTML = "+2 Vig, +1 End";
+                    break;
+                case "sleg": 
+                    resetleg();
+                    leg_speed = 105.2;
+                    document.getElementById("leg").innerHTML = "+5.2% Casting Speed";
                     break;
                 default: 
                     console.log("leg");
@@ -1253,6 +1378,27 @@
                     disablering();
                     checkchime();
                     break;
+                case "speed1": 
+                    resetring1();
+                    ring1_speed = 125;
+                    document.getElementById("ring1").innerHTML = "+25% Casting Speed";
+                    disablering();
+                    checkchime();
+                    break;
+                case "speed2": 
+                    resetring1();
+                    ring1_speed = 154;
+                    document.getElementById("ring1").innerHTML = "+54% Casting Speed";
+                    disablering();
+                    checkchime();
+                    break;
+                case "speed3": 
+                    resetring1();
+                    ring1_speed = 167;
+                    document.getElementById("ring1").innerHTML = "+67% Casting Speed";
+                    disablering();
+                    checkchime();
+                    break;
                 default: 
                     console.log("ring1");
                     break;
@@ -1319,6 +1465,27 @@
                     resetring2();
                     ring2_slot = 3;
                     document.getElementById("ring2").innerHTML = "+3 Attunement Slot";
+                    disablering();
+                    checkchime();
+                    break;
+                case "speed1": 
+                    resetring2();
+                    ring2_speed = 125;
+                    document.getElementById("ring2").innerHTML = "+25% Casting Speed";
+                    disablering();
+                    checkchime();
+                    break;
+                case "speed2": 
+                    resetring2();
+                    ring2_speed = 154;
+                    document.getElementById("ring2").innerHTML = "+54% Casting Speed";
+                    disablering();
+                    checkchime();
+                break;
+                case "speed3": 
+                    resetring2();
+                    ring2_speed = 167;
+                    document.getElementById("ring2").innerHTML = "+67% Casting Speed";
                     disablering();
                     checkchime();
                     break;
@@ -1391,6 +1558,27 @@
                     disablering();
                     checkchime();
                     break;
+                case "speed1": 
+                    resetring3();
+                    ring3_speed = 125;
+                    document.getElementById("ring3").innerHTML = "+25% Casting Speed";
+                    disablering();
+                    checkchime();
+                    break;
+                case "speed2": 
+                    resetring3();
+                    ring3_speed = 154;
+                    document.getElementById("ring3").innerHTML = "+54% Casting Speed";
+                    disablering();
+                    checkchime();
+                    break;
+                case "speed3": 
+                    resetring3();
+                    ring3_speed = 167;
+                    document.getElementById("ring3").innerHTML = "+67% Casting Speed";
+                    disablering();
+                    checkchime();
+                    break;
                 default: 
                     console.log("ring3");
                     break;
@@ -1460,6 +1648,27 @@
                     disablering();
                     checkchime();
                     break;
+                case "speed1": 
+                    resetring4();
+                    ring4_speed = 125;
+                    document.getElementById("ring4").innerHTML = "+25% Casting Speed";
+                    disablering();
+                    checkchime();
+                    break;
+                case "speed2": 
+                    resetring4();
+                    ring4_speed = 154;
+                    document.getElementById("ring4").innerHTML = "+54% Casting Speed";
+                    disablering();
+                    checkchime();
+                    break;
+                case "speed3": 
+                    resetring4();
+                    ring4_speed = 167;
+                    document.getElementById("ring4").innerHTML = "+67% Casting Speed";
+                    disablering();
+                    checkchime();
+                    break;
                 default: 
                     console.log("ring4");
                     break;
@@ -1511,6 +1720,7 @@
         let final_int = 1;
         let final_fth = 1;
         let final_slot = 0;
+        let final_speed = 1;
 
         function finalcalculate(){
             final_vig = vig + helm_vig + leg_vig + hand_vig;
@@ -1561,6 +1771,7 @@
             if(agility < 85){
                 agility = 85;
             }
+            final_speed = Math.floor( calculatespeed()*(helm_speed/100)*(chest_speed/100)*(arm_speed/100)*(leg_speed/100)*(ring1_speed/100)*(ring2_speed/100)*(ring3_speed/100)*(ring4_speed/100));
             document.getElementById("finale_vig").innerHTML = final_vig;
             document.getElementById("finale_end").innerHTML = final_end;
             document.getElementById("finale_vit").innerHTML = final_vit;
@@ -1572,6 +1783,7 @@
             document.getElementById("finale_fth").innerHTML = final_fth;
             document.getElementById("finale_slot").innerHTML = final_slot;
             document.getElementById("finale_agility").innerHTML = agility;
+            document.getElementById("finale_speed").innerHTML = final_speed;
             document.getElementById("final").style.display = "inline-block";
         }
         let agility = 85;
@@ -1664,6 +1876,24 @@
                 hand_fth = 1;
             }else if(stat == 99){
                 hand_fth = 0;
+            }
+        }
+        let storage = 0;
+        function calculatespeed(){ // formula only increaments two at a time, base odd only
+            if(2*((final_att/2)+(final_int + final_fth)/4) + 35 < 116){
+                storage = Math.floor(final_att + ((final_int + final_fth)/2) + 35);
+                if(storage%2 == 1){
+                    return storage;
+                }else{
+                    return storage - 1;
+                }
+            }else if(((final_att/2)+(final_int + final_fth)/4) + 75 < 125){
+                return Math.floor(((final_att/2)+(final_int + final_fth)/4) + 75);
+            }else if(((final_att/4)+(final_int + final_fth)/8) + 100 >= 125){
+                return Math.floor(((final_att/4)+(final_int + final_fth)/8) + 100);
+            }else{
+                console.log("Toofast");
+                return 37;
             }
         }
     </script>
