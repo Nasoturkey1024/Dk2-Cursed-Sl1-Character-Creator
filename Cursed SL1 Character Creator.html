@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <!--To Do List-->
 <!--Check Numbers for Chaos Hood and Chime in-game-->
-<!--Possibly Add Equipment Load-->
 <html>
 <head>
     <title>Cursed SL1 Character Creator</title>
@@ -74,21 +73,26 @@
             width: 100%;
             text-align: center;
         }
-        #showagility, #showslot, #showchime {
+        #showagility, #showslot, #showchime, #showemb {
             display: none;
         }
         .agility_info {
-            width: 33%;
+            width: 25%;
             text-align: center;
             float: left;
         }
         .attunement_info{
-            width:34%;
+            width:25%;
             text-align: center;
             float: left;
         }
         .chime_info {
-            width:33%;
+            width:25%;
+            text-align: center;
+            float: left;
+        }
+        .emb_info {
+            width: 25%;
             text-align: center;
             float: right;
         }
@@ -96,7 +100,7 @@
 </head>
 <body>
     <h1>Create Your Character</h1>
-    <div class="left"> <!--Stat Page. Vig, End, Vit, Att,Str, Dex,Adp,Int,Fai-->
+    <div class="left"> <!--Stat Page. Vig, End, Vit, Att,Str, Dex,Adp,Int,Fth-->
         <h2>Soul Level <span id="level1">-44</span></h2>
         <div class="lefter">
             <p class="height">Vigor:</p>
@@ -194,7 +198,7 @@
             </select></p>
             <p><select onchange="calculatehand()" id="selecthand">
                 <option value="hegothands">None</option>
-                <option value="shield">Vessel Shield(+4 Str/Dex,+ 1Int/Fth/Vig/End/Adp)</option>
+                <option value="shield">Vessel Shield(+4 Str/Dex,+1Int/Fth/Vig/End/Adp)</option>
                 <option  value="laddle">Laddle(+2 Adp,+1 End/Vit,-1 Dex)</option>
                 <option  value="hook">Work Hook(+5 Dex,-3 Adp)</option>
                 <option  value="deargod">Chime of Screams(+X Fth)</option> // faith boost needs testing
@@ -204,6 +208,7 @@
                 <option id="strength1" value="strength">Strength Ring(+5 Str)</option>
                 <option id="dexterity1" value="dexterity">Dexterity Ring(+5 Dex)</option>
                 <option id="simple1" value="simple">Simpleton's Ring(+5 Adp)</option>
+                <option id="emb1" value="emb">Ring of the Embedded(+X Vig,+X End,+X Vit)</option>
                 <option id="knowledge1" value="knowledge">Ring of Knowledge(+5 Int)</option>
                 <option id="prayer1" value="prayer">Ring of Prayer(+5 Fth)</option>
                 <option id="south1+0" value="south1">Southern Ritual Band(+1 Slot)</option>
@@ -218,6 +223,7 @@
                 <option id="strength2" value="strength">Strength Ring(+5 Str)</option>
                 <option id="dexterity2" value="dexterity">Dexterity Ring(+5 Dex)</option>
                 <option id="simple2" value="simple">Simpleton's Ring(+5 Adp)</option>
+                <option id="emb2" value="emb">Ring of the Embedded(+X Vig,+X End,+X Vit)</option>
                 <option id="knowledge2" value="knowledge">Ring of Knowledge(+5 Int)</option>
                 <option id="prayer2" value="prayer">Ring of Prayer(+5 Fth)</option>
                 <option id="south2+0" value="south1">Southern Ritual Band(+1 Slot)</option>
@@ -232,6 +238,7 @@
                 <option id="strength3" value="strength">Strength Ring(+5 Str)</option>
                 <option id="dexterity3" value="dexterity">Dexterity Ring(+5 Dex)</option>
                 <option id="simple3" value="simple">Simpleton's Ring(+5 Adp)</option>
+                <option id="emb3" value="emb">Ring of the Embedded(+X Vig,+X End,+X Vit)</option>
                 <option id="knowledge3" value="knowledge">Ring of Knowledge(+5 Int)</option>
                 <option id="prayer3" value="prayer">Ring of Prayer(+5 Fth)</option>
                 <option id="south3+0" value="south1">Southern Ritual Band(+1 Slot)</option>
@@ -246,6 +253,7 @@
                 <option id="strength4" value="strength">Strength Ring(+5 Str)</option>
                 <option id="dexterity4" value="dexterity">Dexterity Ring(+5 Dex)</option>
                 <option id="simple4" value="simple">Simpleton's Ring(+5 Adp)</option>
+                <option id="emb4" value="emb">Ring of the Embedded(+X Vig,+X End,+X Vit)</option>
                 <option id="knowledge4" value="knowledge">Ring of Knowledge(+5 Int)</option>
                 <option id="prayer4" value="prayer">Ring of Prayer(+5 Fth)</option>
                 <option id="south4+0" value="south1">Southern Ritual Band(+1 Slot)</option>
@@ -471,6 +479,50 @@
             </table>
         </div>
     </div>
+    <div class="emb_info">
+        <p class="height"><button id="embbutton" onclick="toggleemb()">Reveal Embedded Info</button></p>
+        <div id="showemb">
+            <h2 style="text-align:center">Ring of the Embedded Information</h2>
+            <table>
+                <tr>
+                    <th>Stat Value</th>
+                    <th>Stat Increase</th>
+                </tr>
+                <tr>
+                    <td>1-6</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>7-19</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>20-33</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>34-46</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>47-96</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>97</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>98</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>99</td>
+                    <td>0</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 
     <script>
         let vig = 1;
@@ -514,18 +566,21 @@
                         level++;
                         document.getElementById("vig1").innerHTML =  vig;
                         document.getElementById("level1").innerHTML = level;
+                        checkemb();
                         break;
                     case "end1":
                         end++;
                         document.getElementById("end1").innerHTML = end;
                         level++;
                         document.getElementById("level1").innerHTML = level;
+                        checkemb();
                         break;
                     case "vit1":
                         vit++;
                         document.getElementById("vit1").innerHTML = vit;
                         level++;
                         document.getElementById("level1").innerHTML = level;
+                        checkemb();
                         break;
                     case "att1":
                         att++;
@@ -575,18 +630,21 @@
                         level--;
                         document.getElementById("vig1").innerHTML =  vig;
                         document.getElementById("level1").innerHTML = level;
+                        checkemb();
                         break;
                     case "end1":
                         end--;
                         document.getElementById("end1").innerHTML = end;
                         level--;
                         document.getElementById("level1").innerHTML = level;
+                        checkemb();
                         break;
                     case "vit1":
                         vit--;
                         document.getElementById("vit1").innerHTML = vit;
                         level--;
                         document.getElementById("level1").innerHTML = level;
+                        checkemb();
                         break;
                     case "att1":
                         att--;
@@ -651,6 +709,7 @@
             document.getElementById("fth1").innerHTML = fth;
             document.getElementById("level1").innerHTML = level;
             checkchime();
+            checkemb();
         }
         function levelone(){
             vig = 6;
@@ -674,6 +733,7 @@
             document.getElementById("fth1").innerHTML = fth;
             document.getElementById("level1").innerHTML = level;
             checkchime();
+            checkemb();
         }
         function maxlevel(){
             vig = 99;
@@ -697,6 +757,7 @@
             document.getElementById("fth1").innerHTML = fth;
             document.getElementById("level1").innerHTML = level;
             checkchime();
+            checkemb();
 
         }
         // Headpiece affect all stats except attunement
@@ -735,6 +796,9 @@
         let hand_int = 0;
         let hand_fth = 0;
 
+        let ring1_vig = 0;
+        let ring1_end = 0;
+        let ring1_vit = 0;
         let ring1_str = 0;
         let ring1_dex = 0;
         let ring1_adp = 0;
@@ -743,6 +807,9 @@
         let ring1_slot = 0;
         let ring1_speed = 100;
 
+        let ring2_vig = 0;
+        let ring2_end = 0;
+        let ring2_vit = 0;
         let ring2_str = 0;
         let ring2_dex = 0;
         let ring2_adp = 0;
@@ -751,6 +818,9 @@
         let ring2_slot = 0;
         let ring2_speed = 100;
 
+        let ring3_vig = 0;
+        let ring3_end = 0;
+        let ring3_vit = 0;
         let ring3_str = 0;
         let ring3_dex = 0;
         let ring3_adp = 0;
@@ -759,6 +829,9 @@
         let ring3_slot = 0;
         let ring3_speed = 100;
 
+        let ring4_vig = 0;
+        let ring4_end = 0;
+        let ring4_vit = 0;
         let ring4_str = 0;
         let ring4_dex = 0;
         let ring4_adp = 0;
@@ -813,6 +886,9 @@
             hand_fth = 0;
         }
         function resetring1(){
+            ring1_vig = 0;
+            ring1_end = 0;
+            ring1_vit = 0;
             ring1_str = 0;
             ring1_dex = 0;
             ring1_adp = 0;
@@ -822,6 +898,9 @@
             ring1_speed = 100;
         }
         function resetring2(){
+            ring2_vig = 0;
+            ring2_end = 0;
+            ring2_vit = 0;
             ring2_str = 0;
             ring2_dex = 0;
             ring2_adp = 0;
@@ -831,6 +910,9 @@
             ring2_speed = 100;
         }
         function resetring3(){
+            ring3_vig = 0;
+            ring3_end = 0;
+            ring3_vit = 0;
             ring3_str = 0;
             ring3_dex = 0;
             ring3_adp = 0;
@@ -840,6 +922,9 @@
             ring3_speed = 100;
         }
         function resetring4(){
+            ring4_vig = 0;
+            ring4_end = 0;
+            ring4_vit = 0;
             ring4_str = 0;
             ring4_dex = 0;
             ring4_adp = 0;
@@ -1022,6 +1107,37 @@
                     document.getElementById("speed3+2").disabled = true;
                 }
             }
+            switch(emb_ring){
+                case 0: 
+                    document.getElementById("emb1").disabled = false;
+                    document.getElementById("emb2").disabled = false;
+                    document.getElementById("emb3").disabled = false;
+                    document.getElementById("emb4").disabled = false;
+                    break;
+                case 1: 
+                    document.getElementById("emb2").disabled = true;
+                    document.getElementById("emb3").disabled = true;
+                    document.getElementById("emb4").disabled = true;
+                    break;
+                case 2: 
+                    document.getElementById("emb1").disabled = true;
+                    document.getElementById("emb3").disabled = true;
+                    document.getElementById("emb4").disabled = true;
+                    break;
+                case 3: 
+                    document.getElementById("emb1").disabled = true;
+                    document.getElementById("emb2").disabled = true;
+                    document.getElementById("emb4").disabled = true;
+                    break;
+                case 4: 
+                    document.getElementById("emb1").disabled = true;
+                    document.getElementById("emb2").disabled = true;
+                    document.getElementById("emb3").disabled = true;
+                    break;
+                default: 
+                    console.log("impossible number");
+                    break;
+            }
         }
         function resetequipment(){
             document.getElementById("selecthead").value = "nohead?";
@@ -1066,6 +1182,7 @@
 
             disablering();
             chimecalculate();
+            emb_ring = 0;
         }
 
         function calculatehead(){
@@ -1073,6 +1190,7 @@
                 case "nohead?": 
                     resethelm();
                     document.getElementById("helm").innerHTML = "";
+                    checkemb();
                     checkchime();
                     break;
                 case "cale": 
@@ -1080,12 +1198,14 @@
                     helm_dex = 2;
                     helm_end = 1;
                     document.getElementById("helm").innerHTML = "+1 End, +2 Dex";
+                    checkemb();
                     checkchime();
                     break;
                 case "mad": 
                     resethelm();
                     helm_adp = 2;
                     document.getElementById("helm").innerHTML = "+2 Adp";
+                    checkemb();
                     checkchime();
                     break;
                 case "sunken": 
@@ -1098,6 +1218,7 @@
                     helm_int = 1;
                     helm_fth = 1;
                     document.getElementById("helm").innerHTML = "-1 Vig, +1 End, -1 Vit, +1 Str, +1 Dex, +1 Int, +1 Fth";
+                    checkemb();
                     checkchime();
                     break;
                 case "vel": 
@@ -1105,18 +1226,21 @@
                     helm_end = 1;
                     helm_vit = 1;
                     document.getElementById("helm").innerHTML = "+1 End, +1 Vit";
+                    checkemb();
                     checkchime();
                     break;
                 case "ven": 
                     resethelm();
                     helm_vit = 2;
                     document.getElementById("helm").innerHTML = "+2 Vit";
+                    checkemb();
                     checkchime();
                     break;
                 case "slot": 
                     resethelm();
                     helm_slot = 1;
                     document.getElementById("helm").innerHTML = "+1 Attunement Slot";
+                    checkemb();
                     checkchime();
                     break;
                 case "shood":
@@ -1125,6 +1249,7 @@
                     helm_fth = 2;
                     helm_speed = 111;
                     document.getElementById("helm").innerHTML = "+2 Int, +2 Fth, +11% Casting Speed";
+                    checkemb();
                     checkchime();
                     break;
                 case "king": 
@@ -1132,6 +1257,7 @@
                     helm_int = 3;
                     helm_fth = 3;
                     document.getElementById("helm").innerHTML = "+3 Int, +3 Fth";
+                    checkemb();
                     checkchime();
                     break;
                 case "hood2": 
@@ -1139,6 +1265,7 @@
                     helm_int = 2;
                     helm_fth = 2;
                     document.getElementById("helm").innerHTML = "+2 Int, +2 Fth";
+                    checkemb();
                     checkchime();
                     break;
                 case "hood1": 
@@ -1146,6 +1273,7 @@
                     helm_int = 1;
                     helm_fth = 1;
                     document.getElementById("helm").innerHTML = "+1 Int, +1 Fth";
+                    checkemb();
                     checkchime();
                     break;
                 case "shat": 
@@ -1153,24 +1281,29 @@
                     helm_int = 3;
                     helm_speed = 105.2;
                     document.getElementById("helm").innerHTML = "+3 Int, +5.2% Casting Speed";
+                    checkchime();
+                    checkemb();
                     break;
                 case "hat3": 
                     resethelm();
                     helm_int = 3;
                     document.getElementById("helm").innerHTML = "+3 Int";
                     checkchime();
+                    checkemb();
                     break;
                 case "hat2": 
                     resethelm();
                     helm_int = 2;
                     document.getElementById("helm").innerHTML = "+2 Int";
                     checkchime();
+                    checkemb();
                     break;
                 case "hat1": 
                     resethelm();
                     helm_int = 1;
                     document.getElementById("helm").innerHTML = "+1 Int";
                     checkchime();
+                    checkemb();
                     break;
                 case "phat": 
                     resethelm();
@@ -1178,18 +1311,21 @@
                     helm_fth = 2;
                     document.getElementById("helm").innerHTML = "-1 Int, +2 Fth";
                     checkchime();
+                    checkemb();
                     break;
                 case "headpiece2": 
                     resethelm();
                     helm_fth = 2;
                     document.getElementById("helm").innerHTML = "+2 Fth";
                     checkchime();
+                    checkemb();
                     break;
                 case "headpiece1": 
                     resethelm();
                     helm_fth = 1;
                     document.getElementById("helm").innerHTML = "+1 Fth";
                     checkchime();
+                    checkemb();
                     break;
             }
         }
@@ -1251,23 +1387,27 @@
                 case "unshavenlegs": 
                     resetleg();
                     document.getElementById("leg").innerHTML = "";
+                    checkemb();
                     break;
                 case "pleg": 
                     resetleg();
                     leg_adp = 2;
                     leg_int = -1;
                     document.getElementById("leg").innerHTML = "+2 Adp, -1 Int";
+                    checkemb();
                     break;
                 case "pain": 
                     resetleg();
                     leg_vig = 2;
                     leg_end = 1;
                     document.getElementById("leg").innerHTML = "+2 Vig, +1 End";
+                    checkemb();
                     break;
                 case "sleg": 
                     resetleg();
                     leg_speed = 105.2;
                     document.getElementById("leg").innerHTML = "+5.2% Casting Speed";
+                    checkemb();
                     break;
                 default: 
                     console.log("leg");
@@ -1279,6 +1419,7 @@
                 case "hegothands": 
                     resethand();
                     document.getElementById("hand").innerHTML = "";
+                    checkemb();
                     break;
                 case "shield": 
                     resethand();
@@ -1290,6 +1431,7 @@
                     hand_int = 1;
                     hand_fth = 1;
                     document.getElementById("hand").innerHTML = "+1 Vig, +1 End, +4 Str, +4 Dex, +1 Adp, +1 Int, +1 Fth";
+                    checkemb();
                     break;
                 case "laddle": 
                     resethand();
@@ -1298,16 +1440,19 @@
                     hand_dex = -1;
                     hand_adp = 2;
                     document.getElementById("hand").innerHTML = "+1 End, +1 Vit, -1 Dex, +2 Adp";
+                    checkemb();
                     break;
                 case "hook": 
                     resethand();
                     hand_dex = 5;
                     hand_adp = -3;
                     document.getElementById("hand").innerHTML = "+5 Dex, -3 Adp";
+                    checkemb();
                     break;
                 case "deargod": 
                     resethand();
                     checkchime();
+                    checkemb();
                     break;
                 default: 
                     console.log("hand");
@@ -1319,6 +1464,10 @@
                 case "maidenless": 
                     resetring1();
                     document.getElementById("ring1").innerHTML = "";
+                    if(emb_ring == 1){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1326,6 +1475,10 @@
                     resetring1();
                     ring1_str = 5;
                     document.getElementById("ring1").innerHTML = "+5 Str";
+                    if(emb_ring == 1){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1333,6 +1486,10 @@
                     resetring1();
                     ring1_dex = 5;
                     document.getElementById("ring1").innerHTML = "+5 Dex";
+                    if(emb_ring == 1){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1340,6 +1497,17 @@
                     resetring1();
                     ring1_adp = 5;
                     document.getElementById("ring1").innerHTML = "+5 Adp";
+                    if(emb_ring == 1){
+                        emb_ring = 0;
+                    }
+                    checkemb();
+                    disablering();
+                    checkchime();
+                    break;
+                case "emb": 
+                    resetring1();
+                    emb_ring = 1;
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1347,6 +1515,10 @@
                     resetring1();
                     ring1_int = 5;
                     document.getElementById("ring1").innerHTML = "+5 Int"
+                    if(emb_ring == 1){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1354,6 +1526,10 @@
                     resetring1();
                     ring1_fth = 5;
                     document.getElementById("ring1").innerHTML = "+5 Fth";
+                    if(emb_ring == 1){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1361,6 +1537,10 @@
                     resetring1();
                     ring1_slot = 1;
                     document.getElementById("ring1").innerHTML = "+1 Attunement Slot";
+                    if(emb_ring == 1){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1368,6 +1548,10 @@
                     resetring1();
                     ring1_slot = 2;
                     document.getElementById("ring1").innerHTML = "+2 Attunement Slot";
+                    if(emb_ring == 1){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1375,6 +1559,10 @@
                     resetring1();
                     ring1_slot = 3;
                     document.getElementById("ring1").innerHTML = "+3 Attunement Slot";
+                    if(emb_ring == 1){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1382,6 +1570,10 @@
                     resetring1();
                     ring1_speed = 125;
                     document.getElementById("ring1").innerHTML = "+25% Casting Speed";
+                    if(emb_ring == 1){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1389,6 +1581,10 @@
                     resetring1();
                     ring1_speed = 154;
                     document.getElementById("ring1").innerHTML = "+54% Casting Speed";
+                    if(emb_ring == 1){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1396,6 +1592,10 @@
                     resetring1();
                     ring1_speed = 167;
                     document.getElementById("ring1").innerHTML = "+67% Casting Speed";
+                    if(emb_ring == 1){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1409,27 +1609,50 @@
                 case "maidenless": 
                     resetring2();
                     document.getElementById("ring2").innerHTML = "";
-                    disablering();
                     checkchime();
+                    if(emb_ring == 2){
+                        emb_ring = 0;
+                    }
+                    checkemb();
+                    disablering();
                     break;
                 case "strength":
                     resetring2();
                     ring2_str = 5;
                     document.getElementById("ring2").innerHTML = "+5 Str";
-                    disablering();
                     checkchime();
+                    if(emb_ring == 2){
+                        emb_ring = 0;
+                    }
+                    checkemb();
+                    disablering();
                     break;
                 case "dexterity": 
                     resetring2();
                     ring2_dex = 5;
                     document.getElementById("ring2").innerHTML = "+5 Dex";
-                    disablering();
                     checkchime();
+                    if(emb_ring == 2){
+                        emb_ring = 0;
+                    }
+                    checkemb();
+                    disablering();
                     break;
                 case "simple": 
                     resetring2();
                     ring2_adp = 5;
                     document.getElementById("ring2").innerHTML = "+5 Adp";
+                    if(emb_ring == 2){
+                        emb_ring = 0;
+                    }
+                    checkemb();
+                    disablering();
+                    checkchime();
+                    break;
+                case "emb": 
+                    resetring2();
+                    emb_ring = 2;
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1437,6 +1660,10 @@
                     resetring2();
                     ring2_int = 5;
                     document.getElementById("ring2").innerHTML = "+5 Int"
+                    if(emb_ring == 2){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1444,6 +1671,10 @@
                     resetring2();
                     ring2_fth = 5;
                     document.getElementById("ring2").innerHTML = "+5 Fth";
+                    if(emb_ring == 2){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1451,6 +1682,10 @@
                     resetring2();
                     ring2_slot = 1;
                     document.getElementById("ring2").innerHTML = "+1 Attunement Slot";
+                    if(emb_ring == 2){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1458,6 +1693,10 @@
                     resetring2();
                     ring2_slot = 2;
                     document.getElementById("ring2").innerHTML = "+2 Attunement Slot";
+                    if(emb_ring == 2){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1465,6 +1704,10 @@
                     resetring2();
                     ring2_slot = 3;
                     document.getElementById("ring2").innerHTML = "+3 Attunement Slot";
+                    if(emb_ring == 2){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1472,6 +1715,10 @@
                     resetring2();
                     ring2_speed = 125;
                     document.getElementById("ring2").innerHTML = "+25% Casting Speed";
+                    if(emb_ring == 2){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1479,6 +1726,10 @@
                     resetring2();
                     ring2_speed = 154;
                     document.getElementById("ring2").innerHTML = "+54% Casting Speed";
+                    if(emb_ring == 2){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                 break;
@@ -1486,6 +1737,10 @@
                     resetring2();
                     ring2_speed = 167;
                     document.getElementById("ring2").innerHTML = "+67% Casting Speed";
+                    if(emb_ring == 2){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1499,6 +1754,10 @@
                 case "maidenless": 
                     resetring3();
                     document.getElementById("ring3").innerHTML = "";
+                    if(emb_ring == 3){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1506,6 +1765,10 @@
                     resetring3();
                     ring3_str = 5;
                     document.getElementById("ring3").innerHTML = "+5 Str";
+                    if(emb_ring == 3){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1513,6 +1776,10 @@
                     resetring3();
                     ring3_dex = 5;
                     document.getElementById("ring3").innerHTML = "+5 Dex";
+                    if(emb_ring == 3){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1520,6 +1787,17 @@
                     resetring3();
                     ring3_adp = 5;
                     document.getElementById("ring3").innerHTML = "+5 Adp";
+                    if(emb_ring == 3){
+                        emb_ring = 0;
+                    }
+                    checkemb();
+                    disablering();
+                    checkchime();
+                    break;
+                case "emb": 
+                    resetring3();
+                    emb_ring = 3;
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1527,6 +1805,10 @@
                     resetring3();
                     ring3_int = 5;
                     document.getElementById("ring3").innerHTML = "+5 Int"
+                    if(emb_ring == 3){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1534,6 +1816,10 @@
                     resetring3();
                     ring3_fth = 5;
                     document.getElementById("ring3").innerHTML = "+5 Fth";
+                    if(emb_ring == 3){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1541,6 +1827,10 @@
                     resetring3();
                     ring3_slot = 1;
                     document.getElementById("ring3").innerHTML = "+1 Attunement Slot";
+                    if(emb_ring == 3){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1548,6 +1838,10 @@
                     resetring3();
                     ring3_slot = 2;
                     document.getElementById("ring3").innerHTML = "+2 Attunement Slot";
+                    if(emb_ring == 3){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1555,6 +1849,10 @@
                     resetring3();
                     ring3_slot = 3;
                     document.getElementById("ring3").innerHTML = "+3 Attunement Slot";
+                    if(emb_ring == 3){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1562,6 +1860,10 @@
                     resetring3();
                     ring3_speed = 125;
                     document.getElementById("ring3").innerHTML = "+25% Casting Speed";
+                    if(emb_ring == 3){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1569,6 +1871,10 @@
                     resetring3();
                     ring3_speed = 154;
                     document.getElementById("ring3").innerHTML = "+54% Casting Speed";
+                    if(emb_ring == 3){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1576,6 +1882,10 @@
                     resetring3();
                     ring3_speed = 167;
                     document.getElementById("ring3").innerHTML = "+67% Casting Speed";
+                    if(emb_ring == 3){
+                        emb_ring = 0;
+                    }
+                    checkemb();
                     disablering();
                     checkchime();
                     break;
@@ -1589,85 +1899,139 @@
                 case "maidenless": 
                     resetring4();
                     document.getElementById("ring4").innerHTML = "";
-                    disablering();
                     checkchime();
+                    if(emb_ring == 4){
+                        emb_ring = 0;
+                    }
+                    checkemb();
+                    disablering();
                     break;
                 case "strength":
                     resetring4();
                     ring4_str = 5;
                     document.getElementById("ring4").innerHTML = "+5 Str";
-                    disablering();
                     checkchime();
+                    if(emb_ring == 4){
+                        emb_ring = 0;
+                    }
+                    checkemb();
+                    disablering();
                     break;
                 case "dexterity": 
                     resetring4();
                     ring4_dex = 5;
-                    document.getElementById("ring4").innerHTML = "+5 Dex";
-                    disablering();
                     checkchime();
+                    if(emb_ring == 4){
+                        emb_ring = 0;
+                    }
+                    checkemb();
+                    disablering();
                     break;
                 case "simple": 
                     resetring4();
                     ring4_adp = 5;
                     document.getElementById("ring4").innerHTML = "+5 Adp";
-                    disablering();
                     checkchime();
+                    if(emb_ring == 4){
+                        emb_ring = 0;
+                    }
+                    checkemb();
+                    disablering();
+                    break;
+                case "emb": 
+                    resetring4();
+                    checkchime();
+                    emb_ring = 4;
+                    checkemb();
+                    disablering();
                     break;
                 case "knowledge":
                     resetring4();
                     ring4_int = 5;
                     document.getElementById("ring4").innerHTML = "+5 Int"
-                    disablering();
                     checkchime();
+                    if(emb_ring == 4){
+                        emb_ring = 0;
+                    }
+                    checkemb();
+                    disablering();
                     break;
                 case "prayer": 
                     resetring4();
                     ring4_fth = 5;
                     document.getElementById("ring4").innerHTML = "+5 Fth";
-                    disablering();
                     checkchime();
+                    if(emb_ring == 4){
+                        emb_ring = 0;
+                    }
+                    checkemb();
+                    disablering();
                     break;
                 case "south1":
                     resetring4();
                     ring4_slot = 1;
                     document.getElementById("ring4").innerHTML = "+1 Attunement Slot";
-                    disablering();
                     checkchime();
+                    if(emb_ring == 4){
+                        emb_ring = 0;
+                    }
+                    checkemb();
+                    disablering();
                     break;
                 case "south2": 
                     resetring4();
                     ring4_slot = 2;
                     document.getElementById("ring4").innerHTML = "+2 Attunement Slot";
-                    disablering();
                     checkchime();
+                    if(emb_ring == 4){
+                        emb_ring = 0;
+                    }
+                    checkemb();
+                    disablering();
                     break;
                 case "south3": 
                     resetring4();
                     ring4_slot = 3;
                     document.getElementById("ring4").innerHTML = "+3 Attunement Slot";
-                    disablering();
                     checkchime();
+                    if(emb_ring == 4){
+                        emb_ring = 0;
+                    }
+                    checkemb();
+                    disablering();
                     break;
                 case "speed1": 
                     resetring4();
                     ring4_speed = 125;
                     document.getElementById("ring4").innerHTML = "+25% Casting Speed";
-                    disablering();
                     checkchime();
+                    if(emb_ring == 4){
+                        emb_ring = 0;
+                    }
+                    checkemb();
+                    disablering();
                     break;
                 case "speed2": 
                     resetring4();
                     ring4_speed = 154;
                     document.getElementById("ring4").innerHTML = "+54% Casting Speed";
-                    disablering();
                     checkchime();
+                    if(emb_ring == 4){
+                        emb_ring = 0;
+                    }
+                    checkemb();
+                    disablering();
                     break;
                 case "speed3": 
                     resetring4();
                     ring4_speed = 167;
                     document.getElementById("ring4").innerHTML = "+67% Casting Speed";
-                    disablering();
                     checkchime();
+                    if(emb_ring == 4){
+                        emb_ring = 0;
+                    }
+                    checkemb();
+                    disablering();
                     break;
                 default: 
                     console.log("ring4");
@@ -1723,9 +2087,9 @@
         let final_speed = 1;
 
         function finalcalculate(){
-            final_vig = vig + helm_vig + leg_vig + hand_vig;
-            final_end = end + helm_end + leg_end + hand_end;
-            final_vit = vit + helm_vit + hand_vit;
+            final_vig = vig + helm_vig + leg_vig + hand_vig + ring1_vig + ring2_vig + ring3_vig + ring4_vig;
+            final_end = end + helm_end + leg_end + hand_end + ring1_end + ring2_end + ring3_end + ring4_end;
+            final_vit = vit + helm_vit + hand_vit + ring1_vit + ring2_vit + ring3_vit + ring4_vit;
             final_att = att;
             final_str = str + helm_str + hand_str + ring1_str + ring2_str + ring3_str + ring4_str + balm_str;
             final_dex = dex + helm_dex + hand_dex + ring1_dex + ring2_dex + ring3_dex + ring4_dex + balm_dex;
@@ -1851,6 +2215,15 @@
                 document.getElementById("chimebutton").innerHTML = "Reveal Chime Info";
             }
         }
+        function toggleemb(){
+            if(document.getElementById("showemb").style.display == ""){
+                document.getElementById("showemb").style.display = "inline-block";
+                document.getElementById("embbutton").innerHTML = "Hide Embedded Info";
+            }else{
+                document.getElementById("showemb").style.display = null;
+                document.getElementById("embbutton").innerHTML = "Reveal Embedded Info";
+            }
+        }
         function checkchime(){
             if(document.getElementById("selecthand").value == "deargod"){
                 chimecalculate(fth + helm_fth + arm_fth + ring1_fth + ring2_fth + ring3_fth + ring4_fth + balm_fth);
@@ -1874,8 +2247,256 @@
                 hand_fth = 2;
             }else if(stat < 99){
                 hand_fth = 1;
-            }else if(stat == 99){
+            }else{
                 hand_fth = 0;
+            }
+        }
+        // checks current slot and runs function accordingly, displays text
+        let emb_ring = 0;
+        function checkemb(){
+            switch(emb_ring){
+                case 0: 
+                    console.log("nothing");
+                    break;    
+                case 1: 
+                    calculateemb(vig+helm_vig+hand_vig+leg_vig, end+helm_end+hand_end+leg_end, vit+helm_vit+hand_vit, 1);
+                    document.getElementById("ring1").innerHTML = "+" + ring1_vig + " Vig, +" + ring1_end + " End, +" + ring1_vit + " Vit";
+                    break;
+                case 2: 
+                    calculateemb(vig+helm_vig+hand_vig+leg_vig, end+helm_end+hand_end+leg_end, vit+helm_vit+hand_vit, 2);
+                    document.getElementById("ring2").innerHTML = "+" + ring2_vig + " Vig, +" + ring2_end + " End, +" + ring2_vit + " Vit";
+                    break;
+                case 3: 
+                    calculateemb(vig+helm_vig+hand_vig+leg_vig, end+helm_end+hand_end+leg_end, vit+helm_vit+hand_vit, 3);
+                    document.getElementById("ring3").innerHTML = "+" + ring3_vig + " Vig, +" + ring3_end + " End, +" + ring3_vit + " Vit";
+                    break;
+                case 4: 
+                    calculateemb(vig+helm_vig+hand_vig+leg_vig, end+helm_end+hand_end+leg_end, vit+helm_vit+hand_vit, 4);
+                    document.getElementById("ring4").innerHTML = "+" + ring4_vig + " Vig, +" + ring4_end + " End, +" + ring4_vit + " Vit";
+                    break;
+                default: 
+                    console.log("checked out");
+                    break;
+            }
+        }
+        // sets values for ring slot
+        function calculateemb(health, stamina, weight, slot){
+            switch(slot){
+                case 1: 
+                    if(health < 7){
+                        ring1_vig = 7;
+                    }else if(health < 20){
+                        ring1_vig = 6;
+                    }else if(health < 34){
+                        ring1_vig = 5;
+                    }else if(health < 47){
+                        ring1_vig = 4;
+                    }else if(health < 97){
+                        ring1_vig = 3;
+                    }else if(health < 98){
+                        ring1_vig = 2;
+                    }else if(health < 99){
+                        ring1_vig = 1;
+                    }else{
+                        ring1_vig = 0;
+                    }
+                    if(stamina < 7){
+                        ring1_end = 7;
+                    }else if(stamina < 20){
+                        ring1_end = 6;
+                    }else if(stamina < 34){
+                        ring1_end = 5;
+                    }else if(stamina < 47){
+                        ring1_end = 4;
+                    }else if(stamina < 97){
+                        ring1_end = 3;
+                    }else if(stamina < 98){
+                        ring1_end = 2;
+                    }else if(stamina < 99){
+                        ring1_end = 1;
+                    }else{
+                        ring1_end = 0;
+                    }
+                    if(weight < 7){
+                        ring1_vit = 7;
+                    }else if(weight < 20){
+                        ring1_vit = 6;
+                    }else if(weight < 34){
+                        ring1_vit = 5;
+                    }else if(weight < 47){
+                        ring1_vit = 4;
+                    }else if(weight < 97){
+                        ring1_vit = 3;
+                    }else if(weight < 98){
+                        ring1_vit = 2;
+                    }else if(weight < 99){
+                        ring1_vit = 1;
+                    }else{
+                        ring1_vit = 0;
+                    }
+                    break;
+                case 2: 
+                    if(health < 7){
+                        ring2_vig = 7;
+                    }else if(health < 20){
+                        ring2_vig = 6;
+                    }else if(health < 34){
+                        ring2_vig = 5;
+                    }else if(health < 47){
+                        ring2_vig = 4;
+                    }else if(health < 97){
+                        ring2_vig = 3;
+                    }else if(health < 98){
+                        ring2_vig = 2;
+                    }else if(health < 99){
+                        ring2_vig = 1;
+                    }else{
+                        ring2_vig = 0;
+                    }
+                    if(stamina < 7){
+                        ring2_end = 7;
+                    }else if(stamina < 20){
+                        ring2_end = 6;
+                    }else if(stamina < 34){
+                        ring2_end = 5;
+                    }else if(stamina < 47){
+                        ring2_end = 4;
+                    }else if(stamina < 97){
+                        ring2_end = 3;
+                    }else if(stamina < 98){
+                        ring2_end = 2;
+                    }else if(stamina < 99){
+                        ring2_end = 1;
+                    }else{
+                        ring2_end = 0;
+                    }
+                    if(weight < 7){
+                        ring2_vit = 7;
+                    }else if(weight < 20){
+                        ring2_vit = 6;
+                    }else if(weight < 34){
+                        ring2_vit = 5;
+                    }else if(weight < 47){
+                        ring2_vit = 4;
+                    }else if(weight < 97){
+                        ring2_vit = 3;
+                    }else if(weight < 98){
+                        ring2_vit = 2;
+                    }else if(weight < 99){
+                        ring2_vit = 1;
+                    }else{
+                        ring2_vit = 0;
+                    }
+                    break;
+                case 3: 
+                    if(health < 7){
+                        ring3_vig = 7;
+                    }else if(health < 20){
+                        ring3_vig = 6;
+                    }else if(health < 34){
+                        ring3_vig = 5;
+                    }else if(health < 47){
+                        ring3_vig = 4;
+                    }else if(health < 97){
+                        ring3_vig = 3;
+                    }else if(health < 98){
+                        ring3_vig = 2;
+                    }else if(health < 99){
+                        ring3_vig = 1;
+                    }else{
+                        ring3_vig = 0;
+                    }
+                    if(stamina < 7){
+                        ring3_end = 7;
+                    }else if(stamina < 20){
+                        ring3_end = 6;
+                    }else if(stamina < 34){
+                        ring3_end = 5;
+                    }else if(stamina < 47){
+                        ring3_end = 4;
+                    }else if(stamina < 97){
+                        ring3_end = 3;
+                    }else if(stamina < 98){
+                        ring3_end = 2;
+                    }else if(stamina < 99){
+                        ring3_end = 1;
+                    }else{
+                        ring3_end = 0;
+                    }
+                    if(weight < 7){
+                        ring3_vit = 7;
+                    }else if(weight < 20){
+                        ring3_vit = 6;
+                    }else if(weight < 34){
+                        ring3_vit = 5;
+                    }else if(weight < 47){
+                        ring3_vit = 4;
+                    }else if(weight < 97){
+                        ring3_vit = 3;
+                    }else if(weight < 98){
+                        ring3_vit = 2;
+                    }else if(weight < 99){
+                        ring3_vit = 1;
+                    }else{
+                        ring3_vit = 0;
+                    }
+                    break;
+                case 4: 
+                    if(health < 7){
+                        ring4_vig = 7;
+                    }else if(health < 20){
+                        ring4_vig = 6;
+                    }else if(health < 34){
+                        ring4_vig = 5;
+                    }else if(health < 47){
+                        ring4_vig = 4;
+                    }else if(health < 97){
+                        ring4_vig = 3;
+                    }else if(health < 98){
+                        ring4_vig = 2;
+                    }else if(health < 99){
+                        ring4_vig = 1;
+                    }else{
+                        ring4_vig = 0;
+                    }
+                    if(stamina < 7){
+                        ring4_end = 7;
+                    }else if(stamina < 20){
+                        ring4_end = 6;
+                    }else if(stamina < 34){
+                        ring4_end = 5;
+                    }else if(stamina < 47){
+                        ring4_end = 4;
+                    }else if(stamina < 97){
+                        ring4_end = 3;
+                    }else if(stamina < 98){
+                        ring4_end = 2;
+                    }else if(stamina < 99){
+                        ring4_end = 1;
+                    }else{
+                        ring4_end = 0;
+                    }
+                    if(weight < 7){
+                        ring4_vit = 7;
+                    }else if(weight < 20){
+                        ring4_vit = 6;
+                    }else if(weight < 34){
+                        ring4_vit = 5;
+                    }else if(weight < 47){
+                        ring4_vit = 4;
+                    }else if(weight < 97){
+                        ring4_vit = 3;
+                    }else if(weight < 98){
+                        ring4_vit = 2;
+                    }else if(weight < 99){
+                        ring4_vit = 1;
+                    }else{
+                        ring4_vit = 0;
+                    }
+                    break;
+                default: 
+                    console.log("slotted out");
+                    break;
             }
         }
         let storage = 0;
