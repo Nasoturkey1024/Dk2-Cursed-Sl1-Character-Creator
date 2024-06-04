@@ -114,15 +114,15 @@
             <p class="height">Faith:</p>
         </div>
         <div class="else">
-        <p class="height"><button onclick="decreament('vig1')">-</button><span id="vig1">1</span><button onclick="increament('vig1')">+</button></p>
-        <p class="height"><button onclick="decreament('end1')">-</button><span id="end1">1</span><button onclick="increament('end1')">+</button></p>
-        <p class="height"><button onclick="decreament('vit1')">-</button><span id="vit1">1</span><button onclick="increament('vit1')">+</button></p>
-        <p class="height"><button onclick="decreament('att1')">-</button><span id="att1">1</span><button onclick="increament('att1')">+</button></p>
-        <p class="height"><button onclick="decreament('str1')">-</button><span id="str1">1</span><button onclick="increament('str1')">+</button></p>
-        <p class="height"><button onclick="decreament('dex1')">-</button><span id="dex1">1</span><button onclick="increament('dex1')">+</button></p>
-        <p class="height"><button onclick="decreament('adp1')">-</button><span id="adp1">1</span><button onclick="increament('adp1')">+</button></p>
-        <p class="height"><button onclick="decreament('int1')">-</button><span id="int1">1</span><button onclick="increament('int1')">+</button></p>
-        <p class="height"><button onclick="decreament('fth1')">-</button><span id="fth1">1</span><button onclick="increament('fth1')">+</button></p>
+        <p class="height"><button onclick="decreament10('vig1')">-10</button><button onclick="decreament('vig1')">-</button><span id="vig1">1</span><button onclick="increament('vig1')">+</button><button onclick="increament10('vig1')">+10</button></p>
+        <p class="height"><button onclick="decreament10('end1')">-10</button><button onclick="decreament('end1')">-</button><span id="end1">1</span><button onclick="increament('end1')">+</button><button onclick="increament10('end1')">+10</button></p>
+        <p class="height"><button onclick="decreament10('vit1')">-10</button><button onclick="decreament('vit1')">-</button><span id="vit1">1</span><button onclick="increament('vit1')">+</button><button onclick="increament10('vit1')">+10</button></p>
+        <p class="height"><button onclick="decreament10('att1')">-10</button><button onclick="decreament('att1')">-</button><span id="att1">1</span><button onclick="increament('att1')">+</button><button onclick="increament10('att1')">+10</button></p>
+        <p class="height"><button onclick="decreament10('str1')">-10</button><button onclick="decreament('str1')">-</button><span id="str1">1</span><button onclick="increament('str1')">+</button><button onclick="increament10('str1')">+10</button></p>
+        <p class="height"><button onclick="decreament10('dex1')">-10</button><button onclick="decreament('dex1')">-</button><span id="dex1">1</span><button onclick="increament('dex1')">+</button><button onclick="increament10('dex1')">+10</button></p>
+        <p class="height"><button onclick="decreament10('adp1')">-10</button><button onclick="decreament('adp1')">-</button><span id="adp1">1</span><button onclick="increament('adp1')">+</button><button onclick="increament10('adp1')">+10</button></p>
+        <p class="height"><button onclick="decreament10('int1')">-10</button><button onclick="decreament('int1')">-</button><span id="int1">1</span><button onclick="increament('int1')">+</button><button onclick="increament10('int1')">+10</button></p>
+        <p class="height"><button onclick="decreament10('fth1')">-10</button><button onclick="decreament('fth1')">-</button><span id="fth1">1</span><button onclick="increament('fth1')">+</button><button onclick="increament10('fth1')">+10</button></p>
         <p class="height"><button onclick="reset()">Reset</button></p>
         <p class="height"><button onclick="levelone()">SL1</button></p>
         <p class="height"><button onclick="maxlevel()">Max</button></p>
@@ -622,6 +622,131 @@
                 }
             }
         }
+        function increament10(stat){
+            if(checkstat(stat) < 90){
+                switch(stat){
+                    case "vig1":
+                        vig = vig + 10;
+                        level = level + 10;
+                        document.getElementById("vig1").innerHTML =  vig;
+                        document.getElementById("level1").innerHTML = level;
+                        checkemb();
+                        break;
+                    case "end1":
+                        end = end + 10;
+                        document.getElementById("end1").innerHTML = end;
+                        level = level + 10;
+                        document.getElementById("level1").innerHTML = level;
+                        checkemb();
+                        break;
+                    case "vit1":
+                        vit = vit + 10;
+                        document.getElementById("vit1").innerHTML = vit;
+                        level = level + 10;
+                        document.getElementById("level1").innerHTML = level;
+                        checkemb();
+                        break;
+                    case "att1":
+                        att = att + 10;
+                        document.getElementById("att1").innerHTML = att;
+                        level = level + 10;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "str1":
+                        str = str + 10;
+                        document.getElementById("str1").innerHTML = str;
+                        level = level + 10;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "dex1":
+                        dex = dex + 10;
+                        document.getElementById("dex1").innerHTML = dex;
+                        level = level + 10
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "adp1":
+                        adp = adp + 10;
+                        document.getElementById("adp1").innerHTML = adp;
+                        level = level + 10;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "int1":
+                        int = int + 10;
+                        document.getElementById("int1").innerHTML = int;
+                        level = level + 10;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "fth1":
+                        fth = fth + 10;
+                        document.getElementById("fth1").innerHTML = fth;
+                        level = level + 10;
+                        document.getElementById("level1").innerHTML = level;
+                        checkchime();
+                        break;
+                }
+            }else{
+                switch(stat){
+                    case "vig1":
+                        vig = 99;
+                        level = calculatelevel();
+                        document.getElementById("vig1").innerHTML =  vig;
+                        document.getElementById("level1").innerHTML = level;
+                        checkemb();
+                        break;
+                    case "end1":
+                        end = 99;
+                        document.getElementById("end1").innerHTML = end;
+                        level = calculatelevel();
+                        document.getElementById("level1").innerHTML = level;
+                        checkemb();
+                        break;
+                    case "vit1":
+                        vit = 99;
+                        document.getElementById("vit1").innerHTML = vit;
+                        level = calculatelevel();
+                        document.getElementById("level1").innerHTML = level;
+                        checkemb();
+                        break;
+                    case "att1":
+                        att = 99;
+                        document.getElementById("att1").innerHTML = att;
+                        level = calculatelevel();
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "str1":
+                        str = 99;
+                        document.getElementById("str1").innerHTML = str;
+                        level = calculatelevel();
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "dex1":
+                        dex = 99;
+                        document.getElementById("dex1").innerHTML = dex;
+                        level = calculatelevel();
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "adp1":
+                        adp = 99;
+                        document.getElementById("adp1").innerHTML = adp;
+                        level = calculatelevel();
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "int1":
+                        int = 99;
+                        document.getElementById("int1").innerHTML = int;
+                        level = calculatelevel();
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "fth1":
+                        fth = 99;
+                        document.getElementById("fth1").innerHTML = fth;
+                        level = calculatelevel();
+                        document.getElementById("level1").innerHTML = level;
+                        checkchime();
+                        break;
+                }
+            }
+        }
         function decreament(stat){ // Tested, finally works
             if(checkstat(stat) > 1){
                 switch(stat){
@@ -683,9 +808,136 @@
                         document.getElementById("level1").innerHTML = level;
                         checkchime();
                         break;
-                    
                 }
             }
+        }
+        function decreament10(stat){
+            if(checkstat(stat) > 10){
+                switch(stat){
+                    case "vig1":
+                        vig = vig - 10;
+                        level = level - 10;
+                        document.getElementById("vig1").innerHTML =  vig;
+                        document.getElementById("level1").innerHTML = level;
+                        checkemb();
+                        break;
+                    case "end1":
+                        end = end - 10;
+                        document.getElementById("end1").innerHTML = end;
+                        level = level - 10;
+                        document.getElementById("level1").innerHTML = level;
+                        checkemb();
+                        break;
+                    case "vit1":
+                        vit = vit - 10;
+                        document.getElementById("vit1").innerHTML = vit;
+                        level = level - 10;
+                        document.getElementById("level1").innerHTML = level;
+                        checkemb();
+                        break;
+                    case "att1":
+                        att = att - 10;
+                        document.getElementById("att1").innerHTML = att;
+                        level = level - 10;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "str1":
+                        str = str - 10;
+                        document.getElementById("str1").innerHTML = str;
+                        level = level - 10;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "dex1":
+                        dex = dex - 10;
+                        document.getElementById("dex1").innerHTML = dex;
+                        level = level - 10;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "adp1":
+                        adp = adp - 10;
+                        document.getElementById("adp1").innerHTML = adp;
+                        level = level - 10;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "int1":
+                        int = int - 10;
+                        document.getElementById("int1").innerHTML = int;
+                        level = level - 10;
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "fth1":
+                        fth = fth - 10;
+                        document.getElementById("fth1").innerHTML = fth;
+                        level = level - 10;
+                        document.getElementById("level1").innerHTML = level;
+                        checkchime();
+                        break;
+                }
+            }else{
+                switch(stat){
+                    case "vig1":
+                        vig = 1;
+                        level = calculatelevel();
+                        document.getElementById("vig1").innerHTML =  vig;
+                        document.getElementById("level1").innerHTML = level;
+                        checkemb();
+                        break;
+                    case "end1":
+                        end = 1;
+                        document.getElementById("end1").innerHTML = end;
+                        level = calculatelevel();
+                        document.getElementById("level1").innerHTML = level;
+                        checkemb();
+                        break;
+                    case "vit1":
+                        vit = 1;
+                        document.getElementById("vit1").innerHTML = vit;
+                        level = calculatelevel();
+                        document.getElementById("level1").innerHTML = level;
+                        checkemb();
+                        break;
+                    case "att1":
+                        att = 1;
+                        document.getElementById("att1").innerHTML = att;
+                        level = calculatelevel();
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "str1":
+                        str = 1;
+                        document.getElementById("str1").innerHTML = str;
+                        level = calculatelevel();
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "dex1":
+                        dex = 1;
+                        document.getElementById("dex1").innerHTML = dex;
+                        level = calculatelevel();
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "adp1":
+                        adp = 1;
+                        document.getElementById("adp1").innerHTML = adp;
+                        level = calculatelevel();
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "int1":
+                        int = 1;
+                        document.getElementById("int1").innerHTML = int;
+                        level = calculatelevel();
+                        document.getElementById("level1").innerHTML = level;
+                        break;
+                    case "fth1":
+                        fth = 1;
+                        document.getElementById("fth1").innerHTML = fth;
+                        level = calculatelevel();
+                        document.getElementById("level1").innerHTML = level;
+                        checkchime();
+                        break;
+                }
+            }
+        }
+        function calculatelevel(){
+            return vig+end+vit+att+str+dex+adp+int+fth-53;
         }
         function reset(){ // Tested, works
             vig = 1;
@@ -1107,36 +1359,16 @@
                     document.getElementById("speed3+2").disabled = true;
                 }
             }
-            switch(emb_ring){
-                case 0: 
-                    document.getElementById("emb1").disabled = false;
-                    document.getElementById("emb2").disabled = false;
-                    document.getElementById("emb3").disabled = false;
-                    document.getElementById("emb4").disabled = false;
-                    break;
-                case 1: 
-                    document.getElementById("emb2").disabled = true;
-                    document.getElementById("emb3").disabled = true;
-                    document.getElementById("emb4").disabled = true;
-                    break;
-                case 2: 
-                    document.getElementById("emb1").disabled = true;
-                    document.getElementById("emb3").disabled = true;
-                    document.getElementById("emb4").disabled = true;
-                    break;
-                case 3: 
-                    document.getElementById("emb1").disabled = true;
-                    document.getElementById("emb2").disabled = true;
-                    document.getElementById("emb4").disabled = true;
-                    break;
-                case 4: 
-                    document.getElementById("emb1").disabled = true;
-                    document.getElementById("emb2").disabled = true;
-                    document.getElementById("emb3").disabled = true;
-                    break;
-                default: 
-                    console.log("impossible number");
-                    break;
+            if(emb_ring == 0){
+                document.getElementById("emb1").disabled = false;
+                document.getElementById("emb2").disabled = false;
+                document.getElementById("emb3").disabled = false;
+                document.getElementById("emb4").disabled = false;
+            }else{
+                document.getElementById("emb1").disabled = true;
+                document.getElementById("emb2").disabled = true;
+                document.getElementById("emb3").disabled = true;
+                document.getElementById("emb4").disabled = true;
             }
         }
         function resetequipment(){
@@ -1180,9 +1412,9 @@
             resetbalm();
             document.getElementById("balm").innerHTML = "";
 
+            emb_ring = 0;
             disablering();
             chimecalculate();
-            emb_ring = 0;
         }
 
         function calculatehead(){
@@ -2256,7 +2488,6 @@
         function checkemb(){
             switch(emb_ring){
                 case 0: 
-                    console.log("nothing");
                     break;    
                 case 1: 
                     calculateemb(vig+helm_vig+hand_vig+leg_vig, end+helm_end+hand_end+leg_end, vit+helm_vit+hand_vit, 1);
